@@ -66,7 +66,7 @@ export default function LandingPage() {
     <>
 
 
-      <HeroHighlight className="flex flex-col-reverse w-full sm:flex-row">
+      <HeroHighlight className="w-100% flex flex-col-reverse w-full sm:flex-row">
         <motion.h1
           initial={{
             opacity: 0,
