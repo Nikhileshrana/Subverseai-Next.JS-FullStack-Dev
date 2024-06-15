@@ -6,6 +6,7 @@ import { ContainerScroll } from "@/app/components/ui/container-scroll-animation"
 import { SparklesCore } from "@/app/components/ui/sparkles";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
+import BentoGridThirdDemo from "@/app/components/Featured-Section";
 import {
   GlowingStarsBackgroundCard,
   GlowingStarsDescription,
@@ -13,7 +14,7 @@ import {
 } from "@/app/components/ui/glowing-stars";
 import { MultiStepLoader as Loader } from "@/app/components/ui/multi-step-loader";
 import { IconSquareRoundedX } from "@tabler/icons-react";
-
+import { LampContainer } from "@/app/components/ui/lamp";
 
 
 
@@ -35,30 +36,38 @@ export default function LandingPage() {
 
   const buttontriggernikhs1 = () => {
     const states: Array<LoadingState> = [
-      { text: "Buying a condo for me" },
-      { text: "1" },
-      { text: "2" },
-      { text: "3" },
+      { text: "Call summary" },
+      { text: "Customer intent and sentiment analysis" },
+      { text: "Agent performance" },
+      { text: "Custom dashboards" },
+      { text: "Actionable insights" },
+      { text: "Call completion status" },
+      { text: "Issue resolution status" },
     ];
     buttonTrigger(states);
   };
 
   const buttontriggernikhs2 = () => {
     const states: Array<LoadingState> = [
-      { text: "Buying a condo for mine" },
-      { text: "2" },
-      { text: "3" },
-      { text: "4" },
+      { text: "RT speech detection" },
+      { text: "Instant agent prompts" },
+      { text: "Customer intent and sentiment detection" },
+      { text: "Ticket categorization" },
+      { text: "Automate call notes, reminders, follow ups" },
+      { text: "Performance analytics" },
     ];
     buttonTrigger(states);
   };
 
   const buttontriggernikhs3 = () => {
     const states: Array<LoadingState> = [
-      { text: "Buying a condo for not me" },
-      { text: "1" },
-      { text: "2" },
-      { text: "3" },
+      { text: "Conversational AI" },
+      { text: "Auto-language switch" },
+      { text: "Custom voices" },
+      { text: "Call transfer to agents" },
+      { text: "Automate ticket handling, reminders" },
+      { text: "Ultra-low latency" },
+      { text: "Scalable integration" },
     ];
     buttonTrigger(states);
   };
@@ -181,31 +190,6 @@ export default function LandingPage() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div>
         <Loader loadingStates={loadingStates} loading={loading} duration={1000} />
         {loading && (
@@ -304,9 +288,25 @@ export default function LandingPage() {
 
 
 
+      <LampContainer>
+        <motion.h1
+          initial={{ opacity: 0.5, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+        >
+          SubverseAI <br /> the right way
+        </motion.h1>
+      </LampContainer>
 
 
-
+      <div className="h-fit bg-black">
+        <BentoGridThirdDemo />
+      </div>
 
 
 
