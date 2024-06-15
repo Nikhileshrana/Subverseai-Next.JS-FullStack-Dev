@@ -1,12 +1,11 @@
 "use client"
 import React, { useState } from 'react'
-import {Label} from "@/components/ui/label"
-import {Button} from "@/components/ui/button"
-import {Input} from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-
 
 
 export default function GlobeDemo() {
@@ -16,8 +15,8 @@ export default function GlobeDemo() {
     ssr: false,
   });
 
-  
-  
+
+
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
@@ -406,86 +405,94 @@ export default function GlobeDemo() {
 
   return (
     <>
-    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative w-full">
-      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 1,
-          }}
-          className="div"
-        >
-          <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
-            SubverseAI for Everyone.
-          </h2>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-          Enhancing Customer
-Engagement with
-state-of-the-art
-conversational AI
-solutions
-          </p>
-        </motion.div>
-        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
-        <div className="absolute w-full -bottom-20 h-72 md:h-full z-10">
-          <World data={sampleArcs} globeConfig={globeConfig} />;
+      <div className="flex flex-col md:flex-row w-full items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative">
+        <div className="mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 1,
+            }}
+            className="div"
+          >
+            <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
+              SubverseAI for Everyone.
+            </h2>
+            <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
+              Enhancing Customer
+              Engagement with
+              state-of-the-art
+              conversational AI
+              solutions
+            </p>
+          </motion.div>
+          <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+          <div className="absolute hidden md:block w-full -bottom-20 h-72 md:h-full z-10">
+            <World data={sampleArcs} globeConfig={globeConfig} />;
+          </div>
         </div>
-      </div>
-    </div>
-
-
-
-
-    <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-12 rounded-b-[30px] bg-white dark:bg-black px-4 md:px-6">
-          <div className="container">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Get in Touch</h1>
-                <p className="text-gray-500 md:text-xl dark:text-gray-400">
-                  Have a question or want to learn more? Fill out the form below and our team will be in touch.
-                </p>
-                <form className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input id="name" placeholder="Enter your name" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input id="email" type="email" placeholder="Enter your email" />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea id="message" placeholder="Enter your message" className="min-h-[150px]" />
-                  </div>
-                  <Button type="submit" className="w-full">
-                    Submit
-                  </Button>
-                </form>
+        
+        <div className='w-full p-5'>
+          <div className="max-w-md w-full mx-auto space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-4xl font-bold text-[#334155]">Contact Us</h1>
+              <p className="text-[#64748B] dark:text-[#94A3B8]">Get in touch with us for more information.</p>
+            </div>
+            <form className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    className="w-full px-4 py-3 rounded-md bg-white dark:bg-[#1E293B] text-[#334155] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] dark:focus:ring-[#4F46E5]"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    className="w-full px-4 py-3 rounded-md bg-white dark:bg-[#1E293B] text-[#334155] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] dark:focus:ring-[#4F46E5]"
+                  />
+                </div>
               </div>
-              <div className="flex justify-center">
-                <img
-                  src="/contactus.svg"
-                  width="550"
-                  height="550"
-                  alt="Contact Us"
-                  className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full"
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  placeholder="Enter your message"
+                  className="w-full px-4 py-3 rounded-md bg-white dark:bg-[#1E293B] text-[#334155] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] dark:focus:ring-[#4F46E5]"
                 />
               </div>
-            </div>
+              <Button className="w-full bg-[#4F46E5] text-white hover:bg-[#4338CA] focus:ring-[#4F46E5] dark:bg-[#4F46E5] dark:hover:bg-[#4338CA] dark:focus:ring-[#4F46E5]">
+                Submit
+              </Button>
+            </form>
           </div>
-        </section>
-      </main>
+        </div>
+      </div>
 
-      </>
+
+
+
+
+
+    </>
   );
 }
