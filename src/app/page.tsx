@@ -288,7 +288,7 @@ export default function LandingPage() {
           }
         >
           <Image
-            src={`/Demo.jpg`}
+            src={`/tablet.png`}
             alt="hero"
             height={720}
             width={1400}
