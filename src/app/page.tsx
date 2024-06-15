@@ -213,7 +213,7 @@ export default function LandingPage() {
 
           <div onClick={buttontriggernikhs2} className="flex items-center justify-center antialiased">
             <GlowingStarsBackgroundCard>
-              <GlowingStarsTitle>Agent Support (Copilot)</GlowingStarsTitle>
+              <GlowingStarsTitle>Agent Copilot</GlowingStarsTitle>
               <div className="flex justify-between items-end">
                 <GlowingStarsDescription>
                   Productivity tools to empower your agents and improve their performance
