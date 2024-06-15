@@ -80,7 +80,7 @@ export default function LandingPage() {
             duration: 0.5,
             ease: [0.4, 0.0, 0.2, 1],
           }}
-          className="text-2xl relative top-0  md:top-[6rem] sm:w-[60%] px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+          className="text-2xl relative top-0  md:top-[6rem] w-[60%] px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
         >
           Enhance Customer Engagement with
           {" "}
@@ -91,7 +91,7 @@ export default function LandingPage() {
           conversational AI solutions
         </motion.h1>
 
-        <div className="w-auto min-w-[40%]">
+        <div className="w-[40%]" >
           <Image
             src="/hero.svg"
             width={500}
