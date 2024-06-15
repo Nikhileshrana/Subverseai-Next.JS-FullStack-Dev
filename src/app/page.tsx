@@ -247,7 +247,7 @@ export default function LandingPage() {
                 <GlowingStarsDescription>
                   Productivity tools to empower your agents and improve their performance
                 </GlowingStarsDescription>
-                <div className="h-8 w-8 rounded-full bg-[hsla(0,0%,100%,.1)] flex items-center justify-center">
+                <div className="h-8 w-8 rounded-full bg-[gray] flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
