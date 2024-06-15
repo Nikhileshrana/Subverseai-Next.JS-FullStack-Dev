@@ -14,23 +14,27 @@ import {
 import { MultiStepLoader as Loader } from "@/app/components/ui/multi-step-loader";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 
+
+
+
+
+type LoadingState = { text: string; };
+
 export default function LandingPage() {
 
   const words = ["25%", "35%", "30%", "24x7"];
   const slang = ["Less Wait Time", "Improved Performance", "High Resolution Rate", "Service"];
 
-
-
   const [loading, setLoading] = useState(false);
-  const [loadingStates, setLoadingStates] = useState([]);
+  const [loadingStates, setLoadingStates] = useState<Array<LoadingState>>([]);
 
-  const buttonTrigger = (states) => {
+  const buttonTrigger = (states: Array<LoadingState>) => {
     setLoadingStates(states);
     setLoading(true);
   };
 
   const buttontriggernikhs1 = () => {
-    const states = [
+    const states: Array<LoadingState> = [
       { text: "Buying a condo for me" },
       { text: "1" },
       { text: "2" },
@@ -40,7 +44,7 @@ export default function LandingPage() {
   };
 
   const buttontriggernikhs2 = () => {
-    const states = [
+    const states: Array<LoadingState> = [
       { text: "Buying a condo for mine" },
       { text: "2" },
       { text: "3" },
@@ -50,7 +54,7 @@ export default function LandingPage() {
   };
 
   const buttontriggernikhs3 = () => {
-    const states = [
+    const states: Array<LoadingState> = [
       { text: "Buying a condo for not me" },
       { text: "1" },
       { text: "2" },
@@ -66,7 +70,7 @@ export default function LandingPage() {
     <>
 
 
-      <HeroHighlight className="w-100% flex flex-col-reverse w-full sm:flex-row">
+      <HeroHighlight className="flex flex-col-reverse sm:flex-row">
         <motion.h1
           initial={{
             opacity: 0,
@@ -80,7 +84,7 @@ export default function LandingPage() {
             duration: 0.5,
             ease: [0.4, 0.0, 0.2, 1],
           }}
-          className="text-2xl relative top-0  md:top-[6rem] w-[60%] px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+          className="text-2xl relative top-0  md:top-[6rem] sm:w-[60%] px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
         >
           Enhance Customer Engagement with
           {" "}
@@ -91,7 +95,7 @@ export default function LandingPage() {
           conversational AI solutions
         </motion.h1>
 
-        <div className="w-[40%]" >
+        <div className="w-auto">
           <Image
             src="/hero.svg"
             width={500}
@@ -171,6 +175,32 @@ export default function LandingPage() {
           <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
