@@ -405,44 +405,16 @@ export default function GlobeDemo() {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row w-full items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative">
-        <div className="mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 1,
-            }}
-            className="div"
-          >
-            <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
-              SubverseAI for Everyone.
-            </h2>
-            <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-              Enhancing Customer
-              Engagement with
-              state-of-the-art
-              conversational AI
-              solutions
-            </p>
-          </motion.div>
-          <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
-          <div className="absolute hidden md:block w-full -bottom-20 h-72 md:h-full z-10">
-            <World data={sampleArcs} globeConfig={globeConfig} />;
-          </div>
-        </div>
+      <div className="flex flex-col md:flex-row w-full items-center justify-center py-10 h-screen md:h-auto dark:bg-black bg-white relative">
         
-        <div className='w-full p-5'>
+        
+        
+
+      <div className='w-full p-5'>
           <div className="max-w-md w-full mx-auto space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl font-bold text-[#334155]">Contact Us</h1>
-              <p className="text-[#64748B] dark:text-[#94A3B8]">Get in touch with us for more information.</p>
+              <h1 className="text-4xl font-bold text-[#334155]">Have Questions?</h1>
+              <p className="text-[#64748B] dark:text-[#94A3B8]">We are always looking for ways to serve you better. Speak with our executive for any doubts, demo requests, or sales inquiries. You can also shoot us an email at info@subverseai.com or send a WhatsApp message on +91 70213 15804</p>
             </div>
             <form className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -486,6 +458,44 @@ export default function GlobeDemo() {
             </form>
           </div>
         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div className="mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 1,
+            }}
+            className="div"
+          >
+          </motion.div>
+          <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+          <div className="absolute hidden md:block w-full -bottom-20 h-72 md:h-full z-10">
+            <World data={sampleArcs} globeConfig={globeConfig} />;
+          </div>
+        </div>
+        
+        
       </div>
 
 

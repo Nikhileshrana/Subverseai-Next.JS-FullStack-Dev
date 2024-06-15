@@ -129,30 +129,13 @@ export default function LandingPage() {
 
 
 
-
-      <div className="flex flex-col overflow-hidden dark:bg-black">
-        <ContainerScroll
-          titleComponent={
-            <>
-              <h1 className="text-4xl font-semibold text-black dark:text-white">
-                Unleash the power of <br />
-                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                  Scroll Animations
-                </span>
-              </h1>
-            </>
-          }
-        >
-          <Image
-            src={`/Demo.jpg`}
-            alt="hero"
-            height={720}
-            width={1400}
-            className="mx-auto rounded-2xl object-cover h-full object-left-top"
-            draggable={false}
-          />
-        </ContainerScroll>
+      <div className="h-fit bg-black py-[10rem]">
+        <BentoGridThirdDemo />
       </div>
+
+
+
+     
 
 
 
@@ -160,7 +143,7 @@ export default function LandingPage() {
 
 
       <div className="h-fit w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
-        <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
+        <h1 className="md:text-7xl text-6xl lg:text-9xl font-bold text-center text-white relative z-20">
           SubverseAI
         </h1>
         <div className="w-[40rem] h-40 relative">
@@ -288,6 +271,42 @@ export default function LandingPage() {
 
 
 
+
+
+
+      <div className="flex flex-col overflow-hidden dark:bg-black">
+        <ContainerScroll
+          titleComponent={
+            <>
+              <h1 className="text-4xl font-semibold text-black dark:text-white">
+                Unleash the power of <br />
+                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                  Scroll Animations
+                </span>
+              </h1>
+            </>
+          }
+        >
+          <Image
+            src={`/Demo.jpg`}
+            alt="hero"
+            height={720}
+            width={1400}
+            className="mx-auto rounded-2xl object-cover h-full object-left-top"
+            draggable={false}
+          />
+        </ContainerScroll>
+      </div>
+
+
+
+
+
+
+
+
+
+
       <LampContainer>
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
@@ -304,9 +323,7 @@ export default function LandingPage() {
       </LampContainer>
 
 
-      <div className="h-fit bg-black">
-        <BentoGridThirdDemo />
-      </div>
+
 
 
 
