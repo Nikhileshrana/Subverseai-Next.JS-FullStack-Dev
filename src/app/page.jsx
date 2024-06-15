@@ -66,7 +66,7 @@ export default function LandingPage() {
     <>
 
 
-      <HeroHighlight className="flex flex-col-reverse sm:flex-row">
+      <HeroHighlight className="flex flex-col-reverse w-full sm:flex-row">
         <motion.h1
           initial={{
             opacity: 0,
@@ -91,7 +91,7 @@ export default function LandingPage() {
           conversational AI solutions
         </motion.h1>
 
-        <div className="w-auto">
+        <div className="w-auto min-w-[40%]">
           <Image
             src="/hero.svg"
             width={500}
@@ -171,32 +171,6 @@ export default function LandingPage() {
           <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
