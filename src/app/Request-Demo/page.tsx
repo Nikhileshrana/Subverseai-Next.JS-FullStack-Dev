@@ -515,17 +515,6 @@ export default function GlobeDemo() {
               </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
               <div className="space-y-2">
                 <label className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
                   Message
@@ -541,6 +530,7 @@ export default function GlobeDemo() {
               <Button onClick={sendmail} className="w-full bg-[#4F46E5] text-white hover:bg-[#4338CA] focus:ring-[#4F46E5] dark:bg-[#4F46E5] dark:hover:bg-[#4338CA] dark:focus:ring-[#4F46E5]">
                 Submit
               </Button>
+              <p className="text-[#64748B] dark:text-[#94A3B8]" >You can also shoot us an email at info@subverseai.com or send a WhatsApp message on +91 70213 15804</p>
           </div>
         </div>
 
