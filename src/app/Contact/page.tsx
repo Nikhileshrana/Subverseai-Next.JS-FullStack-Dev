@@ -6,6 +6,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import axios from "axios";
+import { toast } from "sonner"
+import { Toaster } from "@/components/ui/sonner";
 
 
 export default function GlobeDemo() {
@@ -403,76 +406,105 @@ export default function GlobeDemo() {
     },
   ];
 
+
+
+
+  const [email, setemail] = useState("");
+  const [name, setname] = useState("");
+  const [company, setcompany] = useState("");
+  const [phone, setphone] = useState("");
+  const [message, setmessage] = useState("");
+
+
+  const sendmail = async()=>
+  {
+
+    const response = await axios.post("/api/sendmail", { email, name, message });
+    toast(`Hi , ${name}`, {
+      description: response.data.message,
+      action: {
+        label: "Okay",
+        onClick: () => console.log("Undo"),
+      }
+    });
+
+      setemail("");
+      setname("");
+      setmessage("");
+
+
+    
+
+  }
+
+
+  
+
+
+
+
+
   return (
     <>
-      <div className="flex flex-col md:flex-row w-full items-center justify-center py-10 h-screen md:h-auto dark:bg-black bg-white relative">
+    <Toaster position="top-center" />
+      <div className="flex flex-col md:flex-row w-full items-center justify-center py-10 h-full sm:h-screen md:h-auto dark:bg-black bg-white relative">
+      
         
-        
-        
-
-      <div className='w-full p-5'>
+        <div className='w-full h-full p-5'>
           <div className="max-w-md w-full mx-auto space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold text-[#334155]">Have Questions?</h1>
               <p className="text-[#64748B] dark:text-[#94A3B8]">We are always looking for ways to serve you better. Speak with our executive for any doubts, demo requests, or sales inquiries. You can also shoot us an email at info@subverseai.com or send a WhatsApp message on +91 70213 15804</p>
             </div>
-            <form className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
+                  <label className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
                     Name
                   </label>
                   <input
                     type="text"
-                    id="name"
+                    value={name}
                     placeholder="Enter your name"
+                    onChange={(e)=>setname(e.target.value)}
                     className="w-full px-4 py-3 rounded-md bg-white dark:bg-[#1E293B] text-[#334155] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] dark:focus:ring-[#4F46E5]"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
+                  <label className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
                     Email
                   </label>
                   <input
+                    value={email}
                     type="email"
-                    id="email"
                     placeholder="Enter your email"
                     className="w-full px-4 py-3 rounded-md bg-white dark:bg-[#1E293B] text-[#334155] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] dark:focus:ring-[#4F46E5]"
+                    onChange={(e) => setemail(e.target.value)}
                   />
                 </div>
               </div>
+
               <div className="space-y-2">
-                <label htmlFor="message" className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
+                <label className="text-[#64748B] dark:text-[#94A3B8] text-sm font-medium">
                   Message
                 </label>
                 <textarea
-                  id="message"
+                  value={message}
                   rows={4}
                   placeholder="Enter your message"
+                  onChange={(e) => setmessage(e.target.value)}
                   className="w-full px-4 py-3 rounded-md bg-white dark:bg-[#1E293B] text-[#334155] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] dark:focus:ring-[#4F46E5]"
                 />
               </div>
-              <Button className="w-full bg-[#4F46E5] text-white hover:bg-[#4338CA] focus:ring-[#4F46E5] dark:bg-[#4F46E5] dark:hover:bg-[#4338CA] dark:focus:ring-[#4F46E5]">
+              <Button onClick={sendmail} className="w-full bg-[#4F46E5] text-white hover:bg-[#4338CA] focus:ring-[#4F46E5] dark:bg-[#4F46E5] dark:hover:bg-[#4338CA] dark:focus:ring-[#4F46E5]">
                 Submit
               </Button>
-            </form>
           </div>
         </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
         <div className="mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
           <motion.div
             initial={{
@@ -494,8 +526,9 @@ export default function GlobeDemo() {
             <World data={sampleArcs} globeConfig={globeConfig} />;
           </div>
         </div>
-        
-        
+
+
+
       </div>
 
 
