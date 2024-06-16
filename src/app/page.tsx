@@ -23,8 +23,8 @@ type LoadingState = { text: string; };
 
 export default function LandingPage() {
 
-  const words = ["25%", "35%", "30%", "24x7"];
-  const slang = ["Less Wait Time", "Improved Performance", "High Resolution Rate", "Service"];
+  const words = ["-25%", "+35%", "+30%", "+70%" , "24x7"];
+  const slang = ["Wait Time", "Performance", "Resolution Rate", "Savings" ,"Service"];
 
   const [loading, setLoading] = useState(false);
   const [loadingStates, setLoadingStates] = useState<Array<LoadingState>>([]);
@@ -115,11 +115,11 @@ export default function LandingPage() {
       </HeroHighlight>
 
       <div className="h-fit p-2 flex justify-center items-center px-4 w-full dark:bg-black">
-        <div className="text-2xl  sm:text-4xl mx-auto font-normal text-neutral-600 dark:text-neutral-400">
-          Make
+        <div className="sm:relative sm:bottom-[10rem] text-2xl  sm:text-4xl mx-auto font-normal text-neutral-600 dark:text-neutral-400">
+          {" "}
           <FlipWords words={words} />
           <FlipWords words={slang} /> <br />
-          With SUBVERSEAI
+          {" "}
         </div>
       </div>
 
