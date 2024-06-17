@@ -112,6 +112,11 @@ export default function LandingPage() {
       description:
         "No data retention policy beyond the necessary processing time",
     },
+    {
+      title: "Servers",
+      description:
+        "Dont Worry, we have got you covered with our 99.9% uptime guarantee",
+    },
   ];
 
 
