@@ -569,7 +569,7 @@ export default function LandingPage() {
 
     <div className="w-full mx-auto px-1 sm:px-4 bg-black">
       <div className="block text-center py-10 font-bold text-3xl sm:text-6xl sm:px-20">Transform Your Business with Our AI-Driven Platform</div>
-      <HoverEffect className="bg-black" items={projects} />
+      <HoverEffect className="bg-black sm:px-20" items={projects} />
     </div>
 
 
