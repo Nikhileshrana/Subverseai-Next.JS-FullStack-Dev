@@ -19,6 +19,9 @@ import { LampContainer } from "@/app/components/ui/lamp";
 
 
 
+
+
+
 type LoadingState = { text: string; };
 
 export default function LandingPage() {
@@ -171,8 +174,6 @@ export default function LandingPage() {
 
 
 
-
-
       <div>
         <Loader loadingStates={loadingStates} loading={loading} duration={1000} />
         {loading && (
@@ -268,12 +269,6 @@ export default function LandingPage() {
       </div>
 
 
-
-
-
-
-
-
       <div className="flex flex-col overflow-hidden dark:bg-black">
         <ContainerScroll
           titleComponent={
@@ -281,7 +276,7 @@ export default function LandingPage() {
               <h1 className="text-4xl font-semibold text-black dark:text-white">
                 Unleash the power of <br />
                 <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                  Scroll Animations
+                  SubverseAI
                 </span>
               </h1>
             </>
@@ -299,14 +294,6 @@ export default function LandingPage() {
       </div>
 
 
-
-
-
-
-
-
-
-
       <LampContainer>
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
@@ -321,16 +308,6 @@ export default function LandingPage() {
           Powered By<br /> 42Apeironanta Technologies Pvt Ltd.
         </motion.h1>
       </LampContainer>
-
-
-
-
-
-
-
-
-
-
 
 
     </>

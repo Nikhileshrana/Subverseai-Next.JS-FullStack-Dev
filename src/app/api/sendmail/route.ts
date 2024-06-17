@@ -3,13 +3,13 @@ import nodemailer from 'nodemailer';
 
 async function sendEmail(body: { email: any; message: any; phone: any; name: any; company: any;}) {
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-        },
+        host: 'mail.subverseai.com', // SMTP server
+  port: 465, // SMTP port
+  secure: true, // Use SSL/TLS
+  auth: {
+    user: process.env.EMAIL_USER, // Email username
+    pass: process.env.EMAIL_PASS, // Email password
+  },
     });
 
     
