@@ -34,8 +34,8 @@ type LoadingState = { text: string; };
 
 export default function LandingPage() {
 
-  const words = ["-25%", "+35%", "+30%", "+70%" , "24x7"];
-  const slang = ["Wait Time", "Performance", "Resolution Rate", "Savings" ,"Service"];
+  const words = ["+45%", "+70%", "-25%", "+35%", "+30%", "24x7"];
+  const slang = ["Higher-CSAT-Score", "Cost-savings-for-contact-centers", "Less-customer-waiting-time", "Improved-agent-productivity", "Higher-first-contact-resolution-rate", "Uninterrupted-service"];
 
   const [loading, setLoading] = useState(false);
   const [loadingStates, setLoadingStates] = useState<Array<LoadingState>>([]);
@@ -93,29 +93,29 @@ export default function LandingPage() {
   const projects = [
     {
       title: "High performance tech-stack",
-      description:"Cutting-edge STT, LLMs, and TTS models to ensure the most accurate results"
+      description: "Cutting-edge STT, LLMs, and TTS models to ensure the most accurate results"
     },
     {
       title: "On-Prem or Private Cloud Deploymen",
-      description:"APIs with data encryption - On-premise for hosting + Cloud for computing"
+      description: "APIs with data encryption; On-premise for hosting + Cloud for computing"
     },
     {
       title: "Seamless and scalable integration",
-      description:"Works with most communications platforms, telephony services, CRMs, KMS, ERPs - Custom AI models, seamless integration with the company database",
+      description: "Custom AI models + most CRMs, KMS, ERPs, and communication platforms",
     },
     {
       title: "State-of-the-Art Encryption",
-      description:"End-to-end data encryption for all voice and text data - Protocols for data at rest + in transit (**AES-256, TLS 1.3**) - Robust Security Measures **RBAC, MFA, firewalls, IDS**"
+      description: "E2E encryption (AES-256, TLS 1.3) for all types of data, with RBAC, MFA, and firewalls."
     },
     {
       title: "Data Privacy",
       description:
-        "No data retention policy beyond the necessary processing time",
+        "No data retention policy beyond the necessary processing time.",
     },
     {
-      title: "Servers",
+      title: "24/7 Support and Monitoring",
       description:
-        "Dont Worry, we have got you covered with our 99.9% uptime guarantee",
+        "Rest assured, our servers have 99.9% uptime to ensure your continuous operations",
     },
   ];
 
@@ -202,7 +202,7 @@ export default function LandingPage() {
       </HeroHighlight>
 
       <div className="h-fit flex justify-center items-center w-full px-[4vw] dark:bg-black">
-        <div className="w-full relative bottom-[3.5rem] sm:bottom-[10rem] text-2xl  sm:text-4xl mx-auto font-normal text-neutral-600 dark:text-neutral-400">
+        <div className="w-full relative bottom-[3.5rem] sm:bottom-[10rem] text-1xl  sm:text-4xl mx-auto font-normal text-neutral-600 dark:text-neutral-400">
           {" "}
           <FlipWords words={words} />
           <FlipWords words={slang} /> <br />
@@ -215,16 +215,17 @@ export default function LandingPage() {
 
 
 
-     
+
+
+
+<div className="bg-black py-20"></div>
 
 
 
 
-
-
-      <div className="h-fit w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md py-20">
-        <h1 className="md:text-7xl text-6xl lg:text-9xl font-bold text-center text-white relative z-20">
-          SubverseAI
+      <div className="h-fit w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+        <h1 className="md:text-4xl text-3xl lg:text-6xl md:py-5 font-bold text-center text-white relative z-20">
+          Explore the future of customer engagement
         </h1>
         <div className="w-[40rem] h-40 relative">
           {/* Gradients */}
@@ -251,119 +252,113 @@ export default function LandingPage() {
 
 
 
-      <div className="px-4">
-        <Loader loadingStates={loadingStates} loading={loading} duration={1000} />
-        {loading && (
-          <button
-            className="fixed top-4 right-4 text-black dark:text-white z-[120]"
-            onClick={() => setLoading(false)}
-          >
-            <IconSquareRoundedX className="h-10 w-10" />
-          </button>
-        )}
-        <div className="cursor-pointer flex flex-col lg:flex-row  gap-5 justify-around dark:bg-black">
-          <div onClick={buttontriggernikhs1} className="flex items-center justify-center antialiased">
-            <GlowingStarsBackgroundCard className="bg-black">
-              <GlowingStarsTitle>Call Analytics & Insight</GlowingStarsTitle>
-              <div className="flex justify-between items-end">
-                <GlowingStarsDescription>
-                  A technology that builds models on decision-making and optimizes CX strategies.
-                </GlowingStarsDescription>
-                <div className="h-8 w-8 rounded-full bg-[hsla(0,0%,100%,.1)] hover:bg-gray-500 flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-4 w-4 text-[white] stroke-2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </GlowingStarsBackgroundCard>
-          </div>
 
-          <div onClick={buttontriggernikhs2} className=" cursor-pointer flex items-center justify-center antialiased">
-            <GlowingStarsBackgroundCard className="bg-black">
-              <GlowingStarsTitle>Agent Copilot</GlowingStarsTitle>
-              <div className="flex justify-between items-end">
-                <GlowingStarsDescription>
-                  Productivity tools to empower your agents and improve their performance
-                </GlowingStarsDescription>
-                <div className="h-8 w-8 rounded-full bg-[hsla(0,0%,100%,.1)] hover:bg-gray-500 flex items-center justify-center">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-4 w-4 text-[white] stroke-2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </GlowingStarsBackgroundCard>
-          </div>
 
-          <div onClick={buttontriggernikhs3} className="cursor-pointer flex items-center justify-center antialiased">
-            <GlowingStarsBackgroundCard className="bg-black">
-              <GlowingStarsTitle>AI-Powered Voicebot</GlowingStarsTitle>
-              <div className="flex justify-between items-end">
-                <GlowingStarsDescription>
-                  Human-like conversations to enhance user experience and reduce operational costs
-                </GlowingStarsDescription>
-                <div className="h-8 w-8 rounded-full bg-[hsla(0,0%,100%,.1)] hover:bg-gray-500 flex items-center justify-center">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-4 w-4 text-[white] stroke-2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </GlowingStarsBackgroundCard>
+
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-black px-10 sm:px-[10rem]">
+        <div onClick={buttontriggernikhs1} className="bg-gray-950 border rounded-lg overflow-hidden">
+          <Image className="w-full h-48 object-fit px-[20vw] py-[8vw] sm:px-24 sm:py-10" src="/predictive-chart.png" alt="AI-Powered Voicebot" height={300} width={500} />
+          <div className="p-4 flex justify-between items-end">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-200">Call Analytics & Insight</h3>
+              <p className="text-gray-400 mt-2">
+                A technology that builds models on decision-making and optimizes CX strategies.
+              </p>
+            </div>
+            <svg
+              className="h-4 w-[7rem] ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
           </div>
         </div>
+
+        <div onClick={buttontriggernikhs2} className="bg-gray-950 border rounded-lg overflow-hidden">
+          <Image className="w-full h-48 object-fit px-[20vw] py-[8vw] sm:px-24 sm:py-10" src="/customer-service.png" alt="AI-Powered Voicebot" height={300} width={500} />
+          <div className="p-4 flex justify-between items-end">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-200">Agent Copilot</h3>
+              <p className="text-gray-400 mt-2">
+                Productivity tools to empower your agents and improve their performance
+              </p>
+            </div>
+
+            <svg
+              className="h-4 w-[7rem] ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+
+
+        <div onClick={buttontriggernikhs3} className="bg-gray-950 border rounded-lg overflow-hidden">
+          <Image className="w-full h-48 object-fit px-[20vw] py-[8vw] sm:px-24 sm:py-10" src="/live-chat.png" alt="AI-Powered Voicebot" height={300} width={300} />
+          <div className="p-4 flex justify-between items-end">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-200">AI-Powered Voicebot</h3>
+              <p className="text-gray-400 mt-2">
+                Human-like conversations to enhance user experience and reduce operational costs.
+              </p>
+            </div>
+
+
+            <svg
+              className="h-4 w-[7rem] ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+
       </div>
 
 
 
 
-  
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
+      <Loader loadingStates={loadingStates} loading={loading} duration={1000} />
+      {loading && (
+        <button
+          className="fixed top-4 right-4 text-black dark:text-white z-[120]"
+          onClick={() => setLoading(false)}
+        >
+          <IconSquareRoundedX className="h-10 w-10" />
+        </button>
+      )}
 
 
 
@@ -373,114 +368,121 @@ export default function LandingPage() {
 
 
 
+      <div className="bg-black h-16"></div>
 
-<div className="py-20 bg-black"></div>
+
+      <LampContainer className="h-[32rem] w-[100%]">
+        <></>
+      </LampContainer>
 
 
-      <div className="w-full h-fit mx-auto bg-black px-4  md:px-6  lg:px-8 md:py-16 lg:py-20">
-      <Carousel className="rounded-lg overflow-hidden">
-        <CarouselContent>
-        <CarouselItem>
-            <div className="grid md:grid-cols-2 gap-6">
-              <img
-                src="https://img.freepik.com/free-vector/wireframe-robot-ai-artificial-intelligence-robotic-hand-machine-learning-cyber-mind-domination-concept_127544-854.jpg?t=st=1718648975~exp=1718652575~hmac=eb29a145fcbdc36b525fd50ff536ad845cb2afa23e02442937e9114c7a913ad5&w=1480"
-                alt="Carousel Image 1"
-                width={800}
-                height={500}
-                className="w-full h-[300px] md:h-auto object-cover"
-              />
-              <div className="space-y-4 ">
-                <h3 className="text-2xl md:text-4xl font-bold">Automate ticket management</h3>
-                  <p className="md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
-                    <br />Improve service TAT with our streamlined processes.
-                    <br />Auto issue categorization, call notes and schedule follow-ups.
-                    <br />Send reminders via WhatsApp or Email effortlessly.
-                  </p>
+
+      <div className="md:text-4xl text-3xl lg:text-6xl py-8 md:py-5 font-bold text-center bg-black">Transform Your Business with Our AI-Driven Platform</div>
+
+      <div className="w-full h-fit mx-auto bg-black px-4  md:px-6  lg:px-8 md:py-8">
+        <Carousel className="rounded-lg overflow-hidden">
+          <CarouselContent>
+            <CarouselItem>
+              <div className="grid md:grid-cols-[30%_70%] gap-6 w-[100%] ">
+                <img
+                  src="/Automate_ticket_management.jpg"
+                  alt="Carousel Image 1"
+                  width={800}
+                  height={500}
+                  className="w-full h-[300px] md:h-[300px] object-cover"
+                />
+                <div className="space-y-4 w-full">
+                  <h3 className="text-2xl md:text-4xl font-bold">Automate ticket management</h3>
+                  <ul className="flex flex-col gap-5 md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
+                    <li>Improve service TAT with our streamlined processes.</li>
+                    <li>Auto issue categorization, call notes and schedule follow-ups.</li>
+                    <li>Send reminders via WhatsApp or Email effortlessly.</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </CarouselItem>
-          <CarouselItem>
-            <div className="grid md:grid-cols-2 gap-6">
-              <img
-                src="https://img.freepik.com/free-vector/wireframe-robot-ai-artificial-intelligence-robotic-hand-machine-learning-cyber-mind-domination-concept_127544-854.jpg?t=st=1718648975~exp=1718652575~hmac=eb29a145fcbdc36b525fd50ff536ad845cb2afa23e02442937e9114c7a913ad5&w=1480"
-                alt="Carousel Image 1"
-                width={800}
-                height={500}
-                className="w-full h-[300px] md:h-auto object-cover"
-              />
-              <div className="space-y-4">
-                <h3 className="text-2xl md:text-4xl font-bold">E2E customer view</h3>
-                  <p className="md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
-                    <br />Access comprehensive insights from all previous interactions across all platforms.
-                    <br />Gain customer-level insights including sentiment trends and feedback.
-                    <br />Enhance customer loyalty with detailed, actionable insights.
-                  </p>
+            </CarouselItem>
+            <CarouselItem>
+              <div className="grid md:grid-cols-[30%_70%] gap-6 w-[100%] ">
+                <img
+                  src="/E2E customer view.png"
+                  alt="Carousel Image 1"
+                  width={800}
+                  height={500}
+                  className="w-full h-[300px] md:h-[300px] object-cover"
+                />
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-4xl font-bold">E2E customer view</h3>
+                  <ul className="flex flex-col gap-5 md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
+                    <li>Access comprehensive insights from all previous interactions across all platforms.</li>
+                    <li>Gain customer-level insights including sentiment trends and feedback.</li>
+                    <li>Enhance customer loyalty with detailed, actionable insights.</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </CarouselItem>
-          <CarouselItem>
-            <div className="grid md:grid-cols-2 gap-6">
-              <img
-                src="https://img.freepik.com/free-vector/wireframe-robot-ai-artificial-intelligence-robotic-hand-machine-learning-cyber-mind-domination-concept_127544-854.jpg?t=st=1718648975~exp=1718652575~hmac=eb29a145fcbdc36b525fd50ff536ad845cb2afa23e02442937e9114c7a913ad5&w=1480"
-                alt="Carousel Image 1"
-                width={800}
-                height={500}
-                className="w-full h-[300px] md:h-auto object-cover"
-              />
-              <div className="space-y-4">
-                <h3 className="text-2xl md:text-4xl font-bold">Upsell / Cross-sell opportunity.</h3>
-                  <p className="md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
-                    <br />Unlock more value with deep customer insights and advanced analytics.
-                    <br />Expand reach by automating outbound calls efficiently.
-                  </p>
+            </CarouselItem>
+            <CarouselItem>
+              <div className="grid md:grid-cols-[30%_70%] gap-6 w-[100%] ">
+                <img
+                  src="/Upsell  Cross sell opportunity.jpg"
+                  alt="Carousel Image 1"
+                  width={800}
+                  height={500}
+                  className="w-full h-[300px] md:h-[300px] object-cover"
+                />
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-4xl font-bold">Upsell / Cross-sell opportunity.</h3>
+                  <ul className="flex flex-col gap-5 md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
+                    <li>Unlock more value with deep customer insights and advanced analytics.</li>
+                    <li>Expand reach by automating outbound calls efficiently.</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </CarouselItem>
-          <CarouselItem>
-            <div className="grid md:grid-cols-2 gap-6">
-              <img
-                src="https://img.freepik.com/free-vector/wireframe-robot-ai-artificial-intelligence-robotic-hand-machine-learning-cyber-mind-domination-concept_127544-854.jpg?t=st=1718648975~exp=1718652575~hmac=eb29a145fcbdc36b525fd50ff536ad845cb2afa23e02442937e9114c7a913ad5&w=1480"
-                alt="Carousel Image 2"
-                width={800}
-                height={500}
-                className="w-full h-[300px] md:h-auto object-cover"
-              />
-              <div className="space-y-4">
-                <h3 className="text-2xl md:text-4xl font-bold">Multimodal communication</h3>
+            </CarouselItem>
+            <CarouselItem>
+              <div className="grid md:grid-cols-[30%_70%] gap-6 w-[100%] ">
+                <img
+                  src="/Multimodal communication.png"
+                  alt="Carousel Image 2"
+                  width={800}
+                  height={500}
+                  className="w-full h-[300px] md:h-[300px] object-cover"
+                />
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-4xl font-bold">Multimodal communication</h3>
 
-                  <p className="md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
-                    <br />Auto-reply to WhatsApp texts, voice messages, and emails in multiple Indian languages.
-                    <br />Voicebots to automate routine and follow-up calls, enhancing customer loyalty.
-                  </p>
-            
+                  <ul className="flex flex-col gap-5 md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
+                    <li>Auto-reply to WhatsApp texts, voice messages, and emails in multiple Indian languages.</li>
+                    <li>Voicebots to automate routine and follow-up calls, enhancing customer loyalty.</li>
+                  </ul>
+
+                </div>
               </div>
-            </div>
-          </CarouselItem>
-          <CarouselItem>
-            <div className="grid md:grid-cols-2 gap-6">
-              <img
-                src="https://img.freepik.com/free-vector/wireframe-robot-ai-artificial-intelligence-robotic-hand-machine-learning-cyber-mind-domination-concept_127544-854.jpg?t=st=1718648975~exp=1718652575~hmac=eb29a145fcbdc36b525fd50ff536ad845cb2afa23e02442937e9114c7a913ad5&w=1480"
-                alt="Carousel Image 3"
-                width={800}
-                height={500}
-                className="w-full h-[300px] md:h-auto object-cover"
-              />
-              <div className="space-y-4">
-                <h3 className="text-2xl md:text-4xl font-bold">Agent empowerment</h3>
-                
-                 <p className="md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
-                  <br />Custom dashboards with agent overview and relevant trends.
-                  <br />Integrate with your L&D module for customized, need-based training.
-                 </p>
-    
+            </CarouselItem>
+            <CarouselItem>
+              <div className="grid md:grid-cols-[30%_70%] gap-6 w-[100%] ">
+                <img
+                  src="/Agent empowerment.png"
+                  alt="Carousel Image 3"
+                  width={800}
+                  height={500}
+                  className="w-full h-[300px] md:h-[300px] object-cover"
+                />
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-4xl font-bold">Agent empowerment</h3>
+
+                  <ul className="flex flex-col gap-5 md:text-3xl w-[90vw] sm:w-auto text-gray-500 dark:text-gray-400">
+                    <li>Custom dashboards with agent overview and relevant trends.</li>
+                    <li>Integrate with your L&D module for customized, need-based training.</li>
+                  </ul>
+
+                </div>
               </div>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious className="absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-gray-900/50 hover:bg-gray-900/70 text-gray-50 rounded-full p-2 cursor-pointer transition-colors" />
-        <CarouselNext className="absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-gray-900/50 hover:bg-gray-900/70 text-gray-50 rounded-full p-2 cursor-pointer transition-colors" />
+            </CarouselItem>
+          </CarouselContent>
+          <CarouselPrevious className="absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-gray-900/50 hover:bg-gray-900/70 text-gray-50 rounded-full p-2 cursor-pointer transition-colors" />
+          <CarouselNext className="absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-gray-900/50 hover:bg-gray-900/70 text-gray-50 rounded-full p-2 cursor-pointer transition-colors" />
         </Carousel>
-        </div>
+      </div>
 
 
 
@@ -518,7 +520,6 @@ export default function LandingPage() {
 
 
 
-      
 
 
 
@@ -526,8 +527,9 @@ export default function LandingPage() {
 
 
 
+      {/* Tablet Preview */}
 
-
+      {/* 
       <div className="flex flex-col overflow-hidden dark:bg-black">
         <ContainerScroll
           titleComponent={
@@ -550,6 +552,29 @@ export default function LandingPage() {
             draggable={false}
           />
         </ContainerScroll>
+      </div> */}
+
+      {/* Tablet Preview Ends here */}
+
+
+
+
+
+
+
+
+
+<div className="bg-black py-20"></div>
+
+
+
+
+
+
+
+      <div className="w-full mx-auto px-1 sm:px-4 bg-black">
+        <div className="block text-center py-10 font-bold text-3xl sm:text-6xl sm:px-20">Scalable Voice AI solutions with Robust Data Security</div>
+        <HoverEffect className="bg-black sm:px-20" items={projects} />
       </div>
 
 
@@ -560,55 +585,30 @@ export default function LandingPage() {
 
 
 
-      
 
 
 
 
 
-
-    <div className="w-full mx-auto px-1 sm:px-4 bg-black">
-      <div className="block text-center py-10 font-bold text-3xl sm:text-6xl sm:px-20">Transform Your Business with Our AI-Driven Platform</div>
-      <HoverEffect className="bg-black sm:px-20" items={projects} />
-    </div>
+      {/* Infinite Scroll for Reviews Section */}
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-      <div className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+      {/* <div className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
       <InfiniteMovingCards
         items={testimonials}
         direction="right"
         speed="slow"
       />
-    </div>
+    </div> */}
+
+      {/* infinite scroll section Ends here */}
 
 
-    <LampContainer>
-        <motion.h1
-          initial={{ opacity: 0.5, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
-        >
-          Powered By<br /> 42Apeironanta Technologies Pvt Ltd.
-        </motion.h1>
-      </LampContainer>
+
+
+
+
+<div className="bg-black py-20"></div>
 
     </>
   );
