@@ -96,7 +96,7 @@ export default function LandingPage() {
       description: "Cutting-edge STT, LLMs, and TTS models to ensure the most accurate results"
     },
     {
-      title: "On-Prem or Private Cloud Deploymen",
+      title: "On-Prem or Private Cloud Deployment",
       description: "APIs with data encryption; On-premise for hosting + Cloud for computing"
     },
     {
@@ -108,7 +108,7 @@ export default function LandingPage() {
       description: "E2E encryption (AES-256, TLS 1.3) for all types of data, with RBAC, MFA, and firewalls."
     },
     {
-      title: "Data Privacy",
+      title: "Data Privacy Policy",
       description:
         "No data retention policy beyond the necessary processing time.",
     },
@@ -256,93 +256,88 @@ export default function LandingPage() {
 
 
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-black px-10 sm:px-[10rem]">
-        <div onClick={buttontriggernikhs1} className="bg-gray-950 border rounded-lg overflow-hidden">
-          <Image className="w-full h-48 object-fit px-[20vw] py-[8vw] sm:px-24 sm:py-10" src="/predictive-chart.png" alt="AI-Powered Voicebot" height={300} width={500} />
-          <div className="p-4 flex justify-between items-end">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-200">Call Analytics & Insight</h3>
-              <p className="text-gray-400 mt-2">
-                A technology that builds models on decision-making and optimizes CX strategies.
-              </p>
-            </div>
-            <svg
-              className="h-4 w-[7rem] ml-2"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </div>
-        </div>
-
-        <div onClick={buttontriggernikhs2} className="bg-gray-950 border rounded-lg overflow-hidden">
-          <Image className="w-full h-48 object-fit px-[20vw] py-[8vw] sm:px-24 sm:py-10" src="/customer-service.png" alt="AI-Powered Voicebot" height={300} width={500} />
-          <div className="p-4 flex justify-between items-end">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-200">Agent Copilot</h3>
-              <p className="text-gray-400 mt-2">
-                Productivity tools to empower your agents and improve their performance
-              </p>
-            </div>
-
-            <svg
-              className="h-4 w-[7rem] ml-2"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </div>
-        </div>
-
-
-        <div onClick={buttontriggernikhs3} className="bg-gray-950 border rounded-lg overflow-hidden">
-          <Image className="w-full h-48 object-fit px-[20vw] py-[8vw] sm:px-24 sm:py-10" src="/live-chat.png" alt="AI-Powered Voicebot" height={300} width={300} />
-          <div className="p-4 flex justify-between items-end">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-200">AI-Powered Voicebot</h3>
-              <p className="text-gray-400 mt-2">
-                Human-like conversations to enhance user experience and reduce operational costs.
-              </p>
-            </div>
-
-
-            <svg
-              className="h-4 w-[7rem] ml-2"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </div>
-        </div>
-
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-black px-10 sm:px-[7rem]">
+  <div onClick={buttontriggernikhs1} className="bg-gray-950 border rounded-lg overflow-hidden">
+  <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/predictive-chart.png" alt="AI-Powered Voicebot" height={300} width={500} />
+  <div className="p-4 flex justify-between items-end">
+      <div>
+        <h3 className="text-lg font-semibold text-gray-200">Call Analytics & Insight</h3>
+        <p className="text-gray-400 mt-2">
+          A technology that builds models on decision-making and optimizes CX strategies.
+        </p>
       </div>
+      <svg
+        className="h-4 w-[7rem] ml-2"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    </div>
+  </div>
+
+  <div onClick={buttontriggernikhs2} className="bg-gray-950 border rounded-lg overflow-hidden">
+    <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/customer-service.png" alt="AI-Powered Voicebot" height={300} width={500} />
+    <div className="p-4 flex justify-between items-end">
+      <div>
+        <h3 className="text-lg font-semibold text-gray-200">Agent Copilot</h3>
+        <p className="text-gray-400 mt-2">
+          Productivity tools to empower your agents and improve their performance
+        </p>
+      </div>
+      <svg
+        className="h-4 w-[7rem] ml-2"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    </div>
+  </div>
+
+  <div onClick={buttontriggernikhs3} className="bg-gray-950 border rounded-lg overflow-hidden">
+    <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/live-chat.png" alt="AI-Powered Voicebot" height={300} width={300} />
+    <div className="p-4 flex justify-between items-end">
+      <div>
+        <h3 className="text-lg font-semibold text-gray-200">AI-Powered Voicebot</h3>
+        <p className="text-gray-400 mt-2">
+          Human-like conversations to enhance user experience and reduce operational costs.
+        </p>
+      </div>
+      <svg
+        className="h-4 w-[7rem] ml-2"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    </div>
+  </div>
+</div>
 
 
 
@@ -371,7 +366,7 @@ export default function LandingPage() {
       <div className="bg-black h-16"></div>
 
 
-      <LampContainer className="h-[32rem] w-[100%]">
+      <LampContainer className="h-[17rem] w-[100%]">
         <></>
       </LampContainer>
 

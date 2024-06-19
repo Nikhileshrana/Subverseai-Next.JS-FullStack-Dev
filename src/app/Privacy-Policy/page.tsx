@@ -9,7 +9,7 @@ export default function Component() {
             <div className="space-y-4">
               <h1 className="text-4xl font-bold text-[#334155]">Privacy Policy</h1>
               <p className="text-[#64748B] dark:text-[#94A3B8]">
-              Protecting your private information is our priority. This Statement of Privacy applies to Retell AI, and Retell AI Inc. and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to Retell AI Include www.retellai.comand Retell AI. The Retell AI application is a Devtool application. By using the Retell AI application, you consent to the data practices described in this statement.
+              Protecting your private information is our priority. This Statement of Privacy applies to Subverse AI, and Subverse AI Inc. and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to Subverse AI Include www.Subverseai.comand Subverse AI. The Subverse AI application is a Devtool application. By using the Subverse AI application, you consent to the data practices described in this statement.
               <br /><br />
               Collection of your Personal Information
 We collect several different types of data for various purposes, primarily to provide and improve our Services. These data include:
@@ -20,7 +20,7 @@ We collect several different types of data for various purposes, primarily to pr
             <div className="space-y-4">
               <h2 className="text-2xl font-bold text-[#334155]">Personal Data</h2>
               <p className="text-[#64748B] dark:text-[#94A3B8]">
-              In order to better provide you with products and services offered, Retell AI may ask you to provide certain personally identifiable information that can be used to contact or identify you (“Personal Data”). These may include, but not limited to:
+              In order to better provide you with products and services offered, Subverse AI may ask you to provide certain personally identifiable information that can be used to contact or identify you (“Personal Data”). These may include, but not limited to:
               <br />
               <ul>
                 <li>Email address</li>
@@ -88,7 +88,7 @@ You can instruct your browser to refuse all cookies or to indicate when a cookie
             <div className="space-y-4">
               <h2 className="text-2xl font-bold text-[#334155]">Use of Data</h2>
               <p className="text-[#64748B] dark:text-[#94A3B8]">
-              Retell AI Inc. uses the collected data to:
+              Subverse AI Inc. uses the collected data to:
 
 - fulfill the purpose for which you provide it;
 - provide and maintain our Service;
@@ -116,7 +116,7 @@ Your information, including Personal Data, may be transferred to – and maintai
 Please be aware that if you choose to give us information while you are not in the US, the data—including Personal Data—will be transferred to and processed in the US. 
 Your agreement to the transfer is shown by your acceptance of this Privacy Policy and your submission of such information.
 
-Retell AI Inc. will take all reasonably required actions to guarantee that your data is handled securely and in compliance with this privacy policy. Your personal data will not be transferred to another organization or nation unless sufficient safeguards, such as those pertaining to the security of your data and other personal information, are in place.
+Subverse AI Inc. will take all reasonably required actions to guarantee that your data is handled securely and in compliance with this privacy policy. Your personal data will not be transferred to another organization or nation unless sufficient safeguards, such as those pertaining to the security of your data and other personal information, are in place.
               
               
               
@@ -135,7 +135,7 @@ Retell AI Inc. will take all reasonably required actions to guarantee that your 
 
 If you are a resident of the European Union (EU) and European Economic Area (EEA), you have certain data protection rights, covered by GDPR (See more at https://eur-lex.europa.eu/eli/reg/2016/679/oj).
 
-We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data, and if you wish to be informed on what Personal Data we hold about you and you want same to be removed from our systems, please email us at founders@retellai.com
+We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data, and if you wish to be informed on what Personal Data we hold about you and you want same to be removed from our systems, please email us at info@subverseai.com 
 
 In certain circumstances, you have the following data protection rights:
 
@@ -157,7 +157,7 @@ According to CalOPPA, we agree to the following:
 - users can visit our site anonymously;
 - our Privacy Policy link includes the word “Privacy”, and can easily be found on the page specified above on the home page of our website;
 - users will be notified of any privacy policy changes on our Privacy Policy Page;
-- users can change their personal information by emailing us at founders@retellai.com
+- users can change their personal information by emailing us at info@subverseai.com 
 
 Our Policy on “Do Not Track” Signals:
 
@@ -183,11 +183,11 @@ Please note, you are entitled to ask us to provide you with this information up 
 
 **To stop selling your personal information**. Your personal information is never sold to other parties for profit. However, in certain situations, a non-monetary transfer of personal data to a third party or another member of our family of businesses can be regarded by California law as a "sale."
 
-We shall cease transferring your personal data if you request that we no longer sell it. If you live in California and would like to request that your personal information not be sold, send an email to founders@re-tellai.com with the subject "Do Not Sell My Personal Information".
+We shall cease transferring your personal data if you request that we no longer sell it. If you live in California and would like to request that your personal information not be sold, send an email to info@subverseai.com  with the subject "Do Not Sell My Personal Information".
 
 Please be aware that requesting that we remove or cease selling your data may have an effect on how you interact with us and may prevent you from taking advantage of membership services or certain programs that depend on the use of your personal data. However, we would never treat you unfairly just because you're exercising your rights.
 
-To exercise your California data protection rights described above, please send your request(s) to founders@retellai.com.
+To exercise your California data protection rights described above, please send your request(s) to founders@Subverseai.com.
 
 Your data protection rights, described above, are covered by the CCPA. To find out more, visit the official California Legislative Information website. The CCPA took effect on 01/01/2020.
 
@@ -197,7 +197,7 @@ Your data protection rights, described above, are covered by the CCPA. To find o
 
 These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
 
-You can request an up-to-date list of third-party Service Providers by emailing us at founders@retellai.com We provide a non-comprehensive list of our Service Providers below.
+You can request an up-to-date list of third-party Service Providers by emailing us at info@subverseai.com  We provide a non-comprehensive list of our Service Providers below.
 
 1. **Analytics**
 
@@ -221,13 +221,13 @@ The payment processors we work with are:
 
 **Use of your Personal Information**
 
-Retell AI collects and uses your personal information to operate and deliver the services you have requested. Retell AI may also use your personally identifiable information to inform you of other products or services available from Retell AI and its affiliates.
+Subverse AI collects and uses your personal information to operate and deliver the services you have requested. Subverse AI may also use your personally identifiable information to inform you of other products or services available from Subverse AI and its affiliates.
 
 **Sharing Information with Third Parties**
 
-Retell AI does not sell, rent, or lease its customer lists to third parties. Retell AI may share data with trusted partners to help perform statistical analysis, send you email or postal mail, provide customer support, or arrange for deliveries. All such third parties are prohibited from using your personal information except to provide these services to Retell AI, and they are required to maintain the confidentiality of your information.
+Subverse AI does not sell, rent, or lease its customer lists to third parties. Subverse AI may share data with trusted partners to help perform statistical analysis, send you email or postal mail, provide customer support, or arrange for deliveries. All such third parties are prohibited from using your personal information except to provide these services to Subverse AI, and they are required to maintain the confidentiality of your information.
 
-Retell AI may disclose your personal information, without notice, if required to do so by law or in the good faith belief that such action is necessary to: (a) conform to the edicts of the law or comply with legal process served on Retell AI or the site; (b) protect and defend the rights or property of Retell AI; and/or (c) act under exigent circumstances to protect the personal safety of users of Retell AI, or the public.
+Subverse AI may disclose your personal information, without notice, if required to do so by law or in the good faith belief that such action is necessary to: (a) conform to the edicts of the law or comply with legal process served on Subverse AI or the site; (b) protect and defend the rights or property of Subverse AI; and/or (c) act under exigent circumstances to protect the personal safety of users of Subverse AI, or the public.
 
 **Right to Deletion**
 
@@ -250,27 +250,27 @@ Please note that we may not be able to comply with requests to delete your perso
 
 **Children Under Thirteen**
 
-Retell AI does not knowingly collect personally identifiable information from children under the age of thirteen. If you are under the age of thirteen, you must ask your parent or guardian for permission to use this application.
+Subverse AI does not knowingly collect personally identifiable information from children under the age of thirteen. If you are under the age of thirteen, you must ask your parent or guardian for permission to use this application.
 
 **Changes to this Statement**
 
-Retell AI reserves the right to change this Privacy Policy from time to time. We will notify you about significant changes in the way we treat personal information by sending a notice to the primary email address specified in your account, by placing a prominent notice on our site, and/or by updating any privacy information. Your continued use of the application and/or Services available after such modifications will constitute your: (a) acknowledgment of the modified Privacy Policy; and (b) agreement to abide and be bound by that Policy.
+Subverse AI reserves the right to change this Privacy Policy from time to time. We will notify you about significant changes in the way we treat personal information by sending a notice to the primary email address specified in your account, by placing a prominent notice on our site, and/or by updating any privacy information. Your continued use of the application and/or Services available after such modifications will constitute your: (a) acknowledgment of the modified Privacy Policy; and (b) agreement to abide and be bound by that Policy.
 
 **Contact Information**
 
-Retell AI welcomes your questions or comments regarding this Statement of Privacy. If you believe that Retell AI has not adhered to this Statement, please contact Retell AI at:
+Subverse AI welcomes your questions or comments regarding this Statement of Privacy. If you believe that Subverse AI has not adhered to this Statement, please contact Subverse AI at:
 
-Retell AI Inc
+SubverseAI AI Inc
 12985 Saratoga avenue
 Saratoga,
 California
 95070
 
 Email Address:
-[founders@retellai.com](mailto:founders@retellai.com)
+[info@subverseai.com](mailto:info@subverseai.com )
 
 Telephone number:
-9257309523
++91 70213 15804
 
 Effective as of March 13, 2024
               
