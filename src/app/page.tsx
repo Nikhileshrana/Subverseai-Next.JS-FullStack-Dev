@@ -202,7 +202,7 @@ export default function LandingPage() {
       </HeroHighlight>
 
       <div className="h-fit flex justify-center items-center w-full px-[4vw] dark:bg-black">
-        <div className="w-full relative bottom-[3.5rem] sm:bottom-[10rem] text-1xl  sm:text-4xl mx-auto font-normal text-neutral-600 dark:text-neutral-400">
+        <div className="w-full relative bottom-[2rem] sm:bottom-[10rem] text-1xl  sm:text-4xl mx-auto font-normal text-neutral-600 dark:text-neutral-400">
           {" "}
           <FlipWords words={words} />
           <FlipWords words={slang} /> <br />

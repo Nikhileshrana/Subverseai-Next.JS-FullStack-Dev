@@ -187,7 +187,7 @@ We shall cease transferring your personal data if you request that we no longer 
 
 Please be aware that requesting that we remove or cease selling your data may have an effect on how you interact with us and may prevent you from taking advantage of membership services or certain programs that depend on the use of your personal data. However, we would never treat you unfairly just because you're exercising your rights.
 
-To exercise your California data protection rights described above, please send your request(s) to founders@Subverseai.com.
+To exercise your California data protection rights described above, please send your request(s) to info@Subverseai.com
 
 Your data protection rights, described above, are covered by the CCPA. To find out more, visit the official California Legislative Information website. The CCPA took effect on 01/01/2020.
 

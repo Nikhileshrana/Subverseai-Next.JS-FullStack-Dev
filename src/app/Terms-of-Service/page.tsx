@@ -37,6 +37,13 @@ export default function Component() {
               </p>
             </div>
             <div className="space-y-4">
+              <h2 className="text-2xl font-bold text-[#334155]">Limitation of Liability</h2>
+              <p className="text-[#64748B] dark:text-[#94A3B8]">
+                Subverseai shall not be liable for any indirect, special, incidental, or consequential damages arising out
+                of or related to your use of our services.
+              </p>
+            </div>
+            <div className="space-y-4">
               <h2 className="text-2xl font-bold text-[#334155]">Changes to these Terms</h2>
               <p className="text-[#64748B] dark:text-[#94A3B8]">
                 We may update these terms of service from time to time. We will notify you of any changes by posting the
