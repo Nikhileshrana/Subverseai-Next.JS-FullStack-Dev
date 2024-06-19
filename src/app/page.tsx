@@ -161,6 +161,17 @@ export default function LandingPage() {
 
 
 
+  console.log("Designed and Developed by Nikhilesh Rana. Full Stack Developer.");
+  console.log("Email - realnikhileshrana@gmail.com");
+  console.log("**************************************************************");
+  console.log("Worked on Landing page.");
+  console.log("Worked on User Authentication.");
+  console.log("Worked on Razorpay Payment Integration.");
+  console.log("Worked on Credits System");
+  console.log("Worked on Restful API for the User to send and recieve files");
+  console.log("**************************************************************");
+  console.log("Email - realnikhileshrana@gmail.com");
+  console.log("nikhileshrana.tech");
 
   return (
     <>
