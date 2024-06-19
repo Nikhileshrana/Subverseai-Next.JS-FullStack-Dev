@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SUBVERSEAI",
-  description: "SUBVERSEAI PVT LTD created By Nikhilesh Rana. Full Stack Developer.",
+  description: "SUBVERSEAI PVT LTD",
 };
 
 export default function RootLayout({
