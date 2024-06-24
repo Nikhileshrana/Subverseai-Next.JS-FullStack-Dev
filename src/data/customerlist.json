@@ -1,0 +1,258 @@
+[
+  {
+    "CallID": "E2F890A0",
+    "Category": "OpenFD",
+    "AgentName": "Rohit",
+    "CustomerID": "8F1A4683",
+    "CustomerSentiment": 4,
+    "AgentPerformance": 8,
+    "AgentEmpathy": 6,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "FALSE",
+    "call_rec" : "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+    "time_stamping_1" : "12:23"
+    
+  },
+  {
+    "CallID": "047C6B94",
+    "Category": "AddBeneficiary",
+    "AgentName": "Mona",
+    "CustomerID": "BAF68A44",
+    "CustomerSentiment": 7,
+    "AgentPerformance": 8,
+    "AgentEmpathy": 3,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "TRUE"
+  },
+  {
+    "CallID": "B14B0419",
+    "Category": "PaymentIssue",
+    "AgentName": "Puja",
+    "CustomerID": null,
+    "CustomerSentiment": 7,
+    "AgentPerformance": 10,
+    "AgentEmpathy": 9,
+    "CallCompletionStatus": "FALSE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "5C2C5681",
+    "Category": "TransactionReport",
+    "AgentName": "Shahrukh",
+    "CustomerID": "E0B91846",
+    "CustomerSentiment": 9,
+    "AgentPerformance": 10,
+    "AgentEmpathy": 9,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "TRUE"
+  },
+  {
+    "CallID": "71D0EACC",
+    "Category": "AccountBlocked",
+    "AgentName": "Rohit",
+    "CustomerID": "63C0BC90",
+    "CustomerSentiment": 9,
+    "AgentPerformance": 4,
+    "AgentEmpathy": 7,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "CEDEF4CE",
+    "Category": "CardNotWorking",
+    "AgentName": "Mona",
+    "CustomerID": "3379A88C",
+    "CustomerSentiment": 6,
+    "AgentPerformance": 10,
+    "AgentEmpathy": 8,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "TRUE"
+  },
+  {
+    "CallID": "7E6EC49F",
+    "Category": "BreakFD",
+    "AgentName": "Puja",
+    "CustomerID": "F186004E",
+    "CustomerSentiment": 2,
+    "AgentPerformance": 4,
+    "AgentEmpathy": 3,
+    "CallCompletionStatus": "FALSE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "878C568F",
+    "Category": "OpenAccount",
+    "AgentName": "Shahrukh",
+    "CustomerID": 12874214,
+    "CustomerSentiment": 8,
+    "AgentPerformance": 7,
+    "AgentEmpathy": 9,
+    "CallCompletionStatus": "FALSE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "CB33D8A5",
+    "Category": "OpenFD",
+    "AgentName": "Rohit",
+    "CustomerID": "DB57A989",
+    "CustomerSentiment": 10,
+    "AgentPerformance": 3,
+    "AgentEmpathy": 5,
+    "CallCompletionStatus": "FALSE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "8DB8F567",
+    "Category": "AddBeneficiary",
+    "AgentName": "Mona",
+    "CustomerID": "24F60BFA",
+    "CustomerSentiment": 9,
+    "AgentPerformance": 2,
+    "AgentEmpathy": 6,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "TRUE"
+  },
+  {
+    "CallID": "DA9F8B97",
+    "Category": "PaymentIssue",
+    "AgentName": "Puja",
+    "CustomerID": "4AA33F40",
+    "CustomerSentiment": 6,
+    "AgentPerformance": 3,
+    "AgentEmpathy": 7,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "47020647",
+    "Category": "TransactionReport",
+    "AgentName": "Shahrukh",
+    "CustomerID": "FEC26985",
+    "CustomerSentiment": 3,
+    "AgentPerformance": 10,
+    "AgentEmpathy": 8,
+    "CallCompletionStatus": "FALSE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "350B215D",
+    "Category": "AccountBlocked",
+    "AgentName": "Rohit",
+    "CustomerID": "9D59B8EB",
+    "CustomerSentiment": 3,
+    "AgentPerformance": 2,
+    "AgentEmpathy": 10,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "TRUE"
+  },
+  {
+    "CallID": "76C5D96C",
+    "Category": "CardNotWorking",
+    "AgentName": "Mona",
+    "CustomerID": "02F8E772",
+    "CustomerSentiment": 7,
+    "AgentPerformance": 6,
+    "AgentEmpathy": 4,
+    "CallCompletionStatus": "FALSE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": null,
+    "Category": "BreakFD",
+    "AgentName": "Puja",
+    "CustomerID": "992B26A2",
+    "CustomerSentiment": 7,
+    "AgentPerformance": 4,
+    "AgentEmpathy": 4,
+    "CallCompletionStatus": "FALSE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "BA866050",
+    "Category": "OpenAccount",
+    "AgentName": "Shahrukh",
+    "CustomerID": "8A299E9F",
+    "CustomerSentiment": 6,
+    "AgentPerformance": 6,
+    "AgentEmpathy": 9,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "AC53121F",
+    "Category": "OpenFD",
+    "AgentName": "Rohit",
+    "CustomerID": "DC150E00",
+    "CustomerSentiment": 5,
+    "AgentPerformance": 10,
+    "AgentEmpathy": 4,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "TRUE"
+  },
+  {
+    "CallID": "AE68BC02",
+    "Category": "AddBeneficiary",
+    "AgentName": "Mona",
+    "CustomerID": "4D2243EB",
+    "CustomerSentiment": 2,
+    "AgentPerformance": 6,
+    "AgentEmpathy": 5,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "4869CE7E",
+    "Category": "PaymentIssue",
+    "AgentName": "Puja",
+    "CustomerID": 65821371,
+    "CustomerSentiment": 9,
+    "AgentPerformance": 6,
+    "AgentEmpathy": 9,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "6D99E3CF",
+    "Category": "TransactionReport",
+    "AgentName": "Shahrukh",
+    "CustomerID": "2E8948C1",
+    "CustomerSentiment": 3,
+    "AgentPerformance": 10,
+    "AgentEmpathy": 10,
+    "CallCompletionStatus": "FALSE",
+    "IssueResolvedStatus": "TRUE"
+  },
+  {
+    "CallID": "0FACC717",
+    "Category": "AccountBlocked",
+    "AgentName": "Rohit",
+    "CustomerID": "642635A0",
+    "CustomerSentiment": 9,
+    "AgentPerformance": 9,
+    "AgentEmpathy": 5,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "TRUE"
+  },
+  {
+    "CallID": "8397776C",
+    "Category": "CardNotWorking",
+    "AgentName": "Mona",
+    "CustomerID": "59135DDB",
+    "CustomerSentiment": 6,
+    "AgentPerformance": 7,
+    "AgentEmpathy": 2,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "FALSE"
+  },
+  {
+    "CallID": "6D3FD443",
+    "Category": "BreakFD",
+    "AgentName": "Puja",
+    "CustomerID": "DBD55321",
+    "CustomerSentiment": 9,
+    "AgentPerformance": 6,
+    "AgentEmpathy": 2,
+    "CallCompletionStatus": "TRUE",
+    "IssueResolvedStatus": "TRUE"
+  }
+]

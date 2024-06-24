@@ -101,7 +101,7 @@ export default function Component() {
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/Privacy-Policy"
+                  href="/Legal/Privacy-Policy"
                   className="text-[#64748B] dark:text-[#94A3B8] hover:text-[#334155] dark:hover:text-[#FFFFFF]"
                   prefetch={false}
                 >
@@ -110,11 +110,38 @@ export default function Component() {
               </li>
               <li>
                 <Link
-                  href="/Terms-of-Service"
+                  href="/Legal/Terms-of-Service"
                   className="text-[#64748B] dark:text-[#94A3B8] hover:text-[#334155] dark:hover:text-[#FFFFFF]"
                   prefetch={false}
                 >
                   Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/Legal/GDPR-Commitment"
+                  className="text-[#64748B] dark:text-[#94A3B8] hover:text-[#334155] dark:hover:text-[#FFFFFF]"
+                  prefetch={false}
+                >
+                  GDPR Commitment
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/Legal/CCPA-Commitment"
+                  className="text-[#64748B] dark:text-[#94A3B8] hover:text-[#334155] dark:hover:text-[#FFFFFF]"
+                  prefetch={false}
+                >
+                  CCPA Commitment
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/Legal/HIPAA-Commitment"
+                  className="text-[#64748B] dark:text-[#94A3B8] hover:text-[#334155] dark:hover:text-[#FFFFFF]"
+                  prefetch={false}
+                >
+                  HIPAA Commitment
                 </Link>
               </li>
             </ul>
