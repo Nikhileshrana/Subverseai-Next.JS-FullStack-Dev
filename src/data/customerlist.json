@@ -9,9 +9,7 @@
     "AgentEmpathy": 6,
     "CallCompletionStatus": "TRUE",
     "IssueResolvedStatus": "FALSE",
-    "call_rec" : "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-    "time_stamping_1" : "12:23"
-    
+    "call_rec" : "/call_recording.mp3"
   },
   {
     "CallID": "047C6B94",
