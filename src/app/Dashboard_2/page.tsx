@@ -56,7 +56,7 @@ export default function Component() {
 
 
             {activeTab === "overview" && (
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 text-black">
 
                 <Card className="flex flex-col">
                   <CardHeader>
@@ -64,7 +64,7 @@ export default function Component() {
                     <CardTitle>3,456</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <LineChart className="aspect-[4/3]" />
+                    <LineChart className="text-black aspect-[10/4]" />
                   </CardContent>
                 </Card>
                 <Card className="flex flex-col">
@@ -73,7 +73,7 @@ export default function Component() {
                     <CardTitle>12,345</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <LabelledpieChart className="aspect-[4/3]" />
+                    <LabelledpieChart className="text-black aspect-[10/3]" />
                   </CardContent>
                 </Card>
                 <Card>
