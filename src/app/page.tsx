@@ -274,7 +274,7 @@ export default function LandingPage() {
       <div>
         <h3 className="text-lg font-semibold text-gray-200">Call Analytics & Insight</h3>
         <p className="text-gray-400 mt-2">
-          A technology that builds models on decision-making and optimizes CX strategies.
+        Gain actionable insights from your call data with Call Analytics. Monitor performance, identify trends, and improve customer service and efficiency.
         </p>
       </div>
       <svg
@@ -301,7 +301,7 @@ export default function LandingPage() {
       <div>
         <h3 className="text-lg font-semibold text-gray-200">Agent Copilot</h3>
         <p className="text-gray-400 mt-2">
-          Productivity tools to empower your agents and improve their performance
+        Empower your agents with our AI-driven Agent Copilot, providing real-time support and guidance to enhance productivity and ensure high-quality interactions.
         </p>
       </div>
       <svg
@@ -328,7 +328,7 @@ export default function LandingPage() {
       <div>
         <h3 className="text-lg font-semibold text-gray-200">AI-Powered Voicebot</h3>
         <p className="text-gray-400 mt-2">
-          Human-like conversations to enhance user experience and reduce operational costs.
+        Our AI-powered Voicebot automates customer interactions with natural, human-like conversations, reducing wait times and enhancing user experiences.
         </p>
       </div>
       <svg
