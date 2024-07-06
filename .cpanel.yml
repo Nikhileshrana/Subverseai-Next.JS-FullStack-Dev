@@ -1,6 +1,0 @@
----
-deployment:
-  tasks:
-    - npm install
-    - npm run build
-    - npm run export

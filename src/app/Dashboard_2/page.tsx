@@ -1,15 +1,62 @@
 "use client"
-import { ClassAttributes, HTMLAttributes, JSX, SVGProps, useState } from "react"
+import { ClassAttributes, HTMLAttributes, JSX, SetStateAction, SVGProps, useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardDescription, CardTitle, CardContent } from "@/components/ui/card"
 import { ResponsiveLine } from "@nivo/line"
 import { ResponsivePie } from "@nivo/pie"
-
-
+import axios from "axios";
 
 export default function Component() {
-  const [activeTab, setActiveTab] = useState("overview")
+  const [activeTab, setActiveTab] = useState("overview");
+  const [audioUrl, setAudioUrl] = useState("");
+  const [usecase, setUsecase] = useState("");
+
+  const [apitranscript, setapitranscript] = useState([]);
+
+  interface ApiAnalysis {
+    [key: string]: {
+      value: string;
+    };
+  }
+
+
+
+  interface AnalysisItem {
+    value: string;
+  }
+  
+  const [apianalysis, setapianalysis] = useState([]);
+  const [apisummary, setapisummary] = useState([]);
+
+  const runcsvtojsonapi = async () => {
+    await axios.post("/api/runcsvtojsonapi");
+  }
+
+  useEffect(() => {
+    runcsvtojsonapi();
+  }, []);
+
+  const aitsacapi = async () => {
+    try {
+      console.log(audioUrl);
+      console.log(usecase);
+      const response = await axios.post('/api/aitsacapi', { audioUrl, usecase });
+
+      await setapitranscript(response.data.transcriptWithSpeakers);
+      await setapisummary(response.data.jsonconvertedsummary.summary);
+      await setapianalysis(response.data.jsonconvertedanalysis.analysis);
+
+      console.log(response.data.transcriptWithSpeakers);
+      console.log(response.data.jsonconvertedsummary.summary);
+      console.log(response.data.jsonconvertedanalysis.analysis);
+      
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+  };
+
+
   return (
     <>
       <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
@@ -18,7 +65,7 @@ export default function Component() {
             <div className="flex h-[60px] items-center border-b px-6">
               <Link href="#" className="flex items-center gap-2 font-semibold" prefetch={false}>
                 <Package2Icon className="h-6 w-6" />
-                <span className="">Acme Analytics</span>
+                <span className="">SubverseAI Analytics</span>
               </Link>
             </div>
             <div className="flex-1 overflow-auto py-2">
@@ -124,19 +171,49 @@ export default function Component() {
                 <Card className="flex flex-col">
                   <CardHeader>
                     <CardTitle>Upload Data</CardTitle>
-                    <CardDescription>Upload a file to analyze and get insights.</CardDescription>
+                    <CardDescription>Upload a URL to analyze and get insights.</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-center w-full h-32 border-2 border-dashed rounded-md border-muted-foreground/20 hover:border-primary transition-colors">
-                      <div className="text-center">
-                        <UploadIcon className="w-8 h-8 mb-2 text-muted-foreground" />
-                        <p className="text-sm font-medium text-muted-foreground">
-                          Drag and drop a file or click to upload
-                        </p>
-                      </div>
+                      <input className="w-full h-full text-4xl p-5" type="text" placeholder="URL of AUDIO CALL REC" onChange={(e) => { setAudioUrl(e.target.value) }} />
                     </div>
-                    <Button>Analyze File</Button>
+
+                    <div className="flex justify-between">
+
+                      <select className="px-5 py-3 rounded-lg " onChange={(e) => { setUsecase(e.target.value) }} name="usecase" id="usecase">
+                        <option value="0">Select</option>
+                        <option value="Bank_Service">Bank Service</option>
+                        <option value="Credit_Card_Sales">Credit Card Sales</option>
+                        <option value="Ecommerce_Sales">Ecommerce Sales</option>
+                        <option value="Hotel_Booking">Hotel Booking</option>
+                        <option value="Insurance_Sales">Insurance Sales</option>
+                        <option value="Payments_Service">Payments Service</option>
+                      </select>
+                      <Button onClick={aitsacapi}>Submit</Button>
+                    </div>
                   </CardContent>
+
+
+                  <CardContent>
+
+                    <div>
+                      Summary :
+                      {apisummary.map((item, index) => (
+                        <div key={index}>
+                          <br />
+                          {item}
+                          <br />
+                        </div>
+                      ))}
+                    </div>
+
+
+
+
+
+
+                  </CardContent>
+
                 </Card>
               </div>
             )}
