@@ -95,16 +95,6 @@ const getCallAnalysis = async (systemPromptFile: string, transcriptWithSpeakers:
 
 
 
-
-
-
-
-
-
-
-
-
-
 export async function POST(req: NextRequest, res: NextResponse) {
 
 
@@ -149,20 +139,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     interface Analysis {
       [key: string]: {
         value: string;
@@ -198,17 +174,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 
 
-
-
-
-
-
-
-
-
     const jsonconvertedanalysis = convertAnalysisToJson(callAnalysis);
-    // console.log(jsonconvertedanalysis);
 
+    
+    console.log(jsonconvertedanalysis);
+    console.log(transcriptWithSpeakers);
+    console.log(jsonconvertedsummary);
     
     return NextResponse.json({transcriptWithSpeakers , jsonconvertedsummary , jsonconvertedanalysis });
 
@@ -217,36 +188,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     return NextResponse.json({ error: 'Internal Server Error' });
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
