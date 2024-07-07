@@ -46,8 +46,8 @@ export default function Component() {
 
       // setApisummary(response.data.jsonconvertedsummary.summary);
       
-      // setApitranscript(response.data.transcriptWithSpeakers);
-      setApianalysis(response.data.jsonconvertedanalysis);
+      setApitranscript(response.data.transcriptWithSpeakers);
+      // setApianalysis(response.data.jsonconvertedanalysis);
 
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -243,7 +243,7 @@ export default function Component() {
 
                     <br /><br /><br /><br /><br />
 
-                    <div>
+                    {/* <div>
                       Analysis:
                       {apianalysis.map((item, index) => (
                         <div key={index}>
@@ -252,12 +252,12 @@ export default function Component() {
                           <br />
                         </div>
                       ))}
-                    </div>
+                    </div> */}
 
 
                     <br /><br /><br /><br /><br />
 
-                    {/* <div>
+                    <div>
                       Transcript:
                       {apitranscript.map((item, index) => (
                         <div key={index}>
@@ -277,7 +277,7 @@ export default function Component() {
                           <br />
                         </div>
                       ))}
-                    </div> */}
+                    </div>
                   </CardContent>
                 </Card>
               </div>
