@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -44,9 +44,10 @@ export default function Component() {
       console.log(usecase);
       const response = await axios.post('/api/aitsacapi', { audioUrl, usecase });
 
-      setApitranscript(response.data.transcriptWithSpeakers);
       setApisummary(response.data.jsonconvertedsummary.summary);
-      setApianalysis(response.data.jsonconvertedanalysis);
+      
+      // setApitranscript(response.data.transcriptWithSpeakers);
+      // setApianalysis(response.data.jsonconvertedanalysis);
 
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -61,21 +62,21 @@ export default function Component() {
             <div className="flex h-[60px] items-center border-b px-6">
               <Link href="#" className="flex items-center gap-2 font-semibold" prefetch={false}>
                 <svg
-      className="h-6 w-6"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
-      <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
-      <path d="M12 3v6" />
-    </svg>
+                  className="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
+                  <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
+                  <path d="M12 3v6" />
+                </svg>
                 <span className="">SubverseAI Analytics</span>
               </Link>
             </div>
@@ -88,20 +89,20 @@ export default function Component() {
                 >
 
                   <svg
-      className="h-4 w-4"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
+                    className="h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
                   Overview
                 </Button>
                 <Button
@@ -110,20 +111,20 @@ export default function Component() {
                   className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
                 >
                   <svg
-      className="h-4 w-4"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 3v18h18" />
-      <path d="m19 9-5 5-4-4-3 3" />
-    </svg>
+                    className="h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M3 3v18h18" />
+                    <path d="m19 9-5 5-4-4-3 3" />
+                  </svg>
                   Analytics
                 </Button>
                 <Button
@@ -132,21 +133,21 @@ export default function Component() {
                   className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
                 >
                   <svg
-      className="h-4 w-4"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="17 8 12 3 7 8" />
-      <line x1="12" x2="12" y1="3" y2="15" />
-    </svg>
+                    className="h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" x2="12" y1="3" y2="15" />
+                  </svg>
                   Upload
                 </Button>
               </nav>
@@ -242,7 +243,7 @@ export default function Component() {
 
                     <br /><br /><br /><br /><br />
 
-                    <div>
+                    {/* <div>
                       Analysis:
                       {apianalysis.map((item, index) => (
                         <div key={index}>
@@ -251,12 +252,12 @@ export default function Component() {
                           <br />
                         </div>
                       ))}
-                    </div>
+                    </div> */}
 
 
                     <br /><br /><br /><br /><br />
 
-                    <div>
+                    {/* <div>
                       Transcript:
                       {apitranscript.map((item, index) => (
                         <div key={index}>
@@ -276,7 +277,7 @@ export default function Component() {
                           <br />
                         </div>
                       ))}
-                    </div>
+                    </div> */}
                   </CardContent>
                 </Card>
               </div>
