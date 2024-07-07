@@ -12,7 +12,16 @@ export default function Component() {
   const [audioUrl, setAudioUrl] = useState("");
   const [usecase, setUsecase] = useState("");
 
-  const [apitranscript, setapitranscript] = useState([]);
+  
+
+
+  
+  interface TranscriptItem {
+    transcript: string;
+    start: number,
+    speaker: number    
+  }
+
 
   interface ApiAnalysis {
     [key: string]: {
@@ -28,6 +37,7 @@ export default function Component() {
   
   const [apianalysis, setapianalysis] = useState([]);
   const [apisummary, setapisummary] = useState([]);
+  const [apitranscript, setApitranscript] = useState<TranscriptItem[]>([]);
 
   const runcsvtojsonapi = async () => {
     await axios.post("/api/runcsvtojsonapi");
@@ -48,7 +58,7 @@ export default function Component() {
       console.log(usecase);
       const response = await axios.post('/api/aitsacapi', { audioUrl, usecase });
 
-      await setapitranscript(response.data.transcriptWithSpeakers);
+      await setApitranscript(response.data.transcriptWithSpeakers);
       await setapisummary(response.data.jsonconvertedsummary.summary);
       await setapianalysis(response.data.jsonconvertedanalysis);
 
@@ -246,8 +256,14 @@ export default function Component() {
                       Transcript :
                       {apitranscript.map((item, index) => (
                         <div key={index}>
+                          Start Timing : {item.start}
                           <br />
-                          {item.transcript}
+
+          {
+            item.speaker == 0 ? (<div><span className=" text-orange-700">Agent : </span> {item.transcript}</div>):(<div><span className="text-blue-600">Customer : </span>{item.transcript}</div>)
+          }
+
+
                           <br />
                         </div>
                       ))}
