@@ -44,10 +44,10 @@ export default function Component() {
       console.log(usecase);
       const response = await axios.post('/api/aitsacapi', { audioUrl, usecase });
 
-      setApisummary(response.data.jsonconvertedsummary.summary);
+      // setApisummary(response.data.jsonconvertedsummary.summary);
       
       // setApitranscript(response.data.transcriptWithSpeakers);
-      // setApianalysis(response.data.jsonconvertedanalysis);
+      setApianalysis(response.data.jsonconvertedanalysis);
 
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -230,7 +230,7 @@ export default function Component() {
                   </CardContent>
 
                   <CardContent>
-                    <div>
+                    {/* <div>
                       Summary:
                       {apisummary.map((item, index) => (
                         <div key={index}>
@@ -239,11 +239,11 @@ export default function Component() {
                           <br />
                         </div>
                       ))}
-                    </div>
+                    </div> */}
 
                     <br /><br /><br /><br /><br />
 
-                    {/* <div>
+                    <div>
                       Analysis:
                       {apianalysis.map((item, index) => (
                         <div key={index}>
@@ -252,7 +252,7 @@ export default function Component() {
                           <br />
                         </div>
                       ))}
-                    </div> */}
+                    </div>
 
 
                     <br /><br /><br /><br /><br />
