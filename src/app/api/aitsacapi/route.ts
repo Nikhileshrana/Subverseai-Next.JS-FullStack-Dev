@@ -175,25 +175,21 @@ export async function POST(req: NextRequest, res: NextResponse) {
       analysis: Analysis;
     }
 
-    const convertanalysistojson = (text: string): AnalysisResult => {
-      const analysis: Analysis = {};
-      let section = 'analysis';
+    const convertAnalysisToJson = (text: string): string[] => {
+      const analysisArray: string[] = [];
       const lines = text.trim().split('\n').filter(line => line.trim() !== '');
-
+    
       lines.forEach(line => {
-        if (line.includes(':') && section === 'analysis') {
-          const [key, value] = line.split(': ');
+        if (line.includes(':')) {
+          const [key, ...valueParts] = line.split(': ');
+          const value = valueParts.join(': ');  // Handles cases where the value contains a colon
           if (value) {
-            const [mainValue, extra] = value.split(' (');
-            analysis[key.trim()] = {
-              value: mainValue.trim(),
-              ...(extra ? { [extra.startsWith('Rating') ? 'rating' : 'status']: extra.replace(/[Rating|Status]: |\)/g, '').trim() } : {})
-            };
+            analysisArray.push(`${key.trim()}: ${value.trim()}`);
           }
         }
       });
-
-      return { analysis };
+    
+      return analysisArray;
     };
 
 
@@ -210,8 +206,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 
 
-
-    const jsonconvertedanalysis = convertanalysistojson(callAnalysis);
+    const jsonconvertedanalysis = convertAnalysisToJson(callAnalysis);
     // console.log(jsonconvertedanalysis);
 
     

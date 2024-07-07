@@ -37,6 +37,11 @@ export default function Component() {
     runcsvtojsonapi();
   }, []);
 
+
+
+
+
+
   const aitsacapi = async () => {
     try {
       console.log(audioUrl);
@@ -45,16 +50,19 @@ export default function Component() {
 
       await setapitranscript(response.data.transcriptWithSpeakers);
       await setapisummary(response.data.jsonconvertedsummary.summary);
-      await setapianalysis(response.data.jsonconvertedanalysis.analysis);
+      await setapianalysis(response.data.jsonconvertedanalysis);
 
       console.log(response.data.transcriptWithSpeakers);
       console.log(response.data.jsonconvertedsummary.summary);
-      console.log(response.data.jsonconvertedanalysis.analysis);
+      console.log(response.data.jsonconvertedanalysis);
       
     } catch (error) {
       console.error('Error uploading file:', error);
     }
   };
+
+
+
 
 
   return (
@@ -206,6 +214,47 @@ export default function Component() {
                         </div>
                       ))}
                     </div>
+
+
+
+
+<br /><br /><br /><br /><br />
+
+
+
+
+                    <div>
+                      Analysis :
+                      {apianalysis.map((item, index) => (
+                        <div key={index}>
+                          <br />
+                          {item}
+                          <br />
+                        </div>
+                      ))}
+                    </div>
+
+
+
+
+                    <br /><br /><br /><br /><br />
+
+
+
+
+                    <div>
+                      Transcript :
+                      {apitranscript.map((item, index) => (
+                        <div key={index}>
+                          <br />
+                          {item.transcript}
+                          <br />
+                        </div>
+                      ))}
+                    </div>
+
+
+
 
 
 
