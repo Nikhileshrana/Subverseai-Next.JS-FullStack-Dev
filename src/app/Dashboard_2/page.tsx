@@ -42,9 +42,9 @@ export default function Component() {
     try {
       const response = await axios.post('/api/aitsacapi', { audioUrl, usecase });
 
-      // setApisummary(response.data.jsonconvertedsummary.summary);
-      // setApitranscript(response.data.transcriptWithSpeakers);
-      // setApianalysis(response.data.jsonconvertedanalysis);
+      setApisummary(response.data.jsonconvertedsummary.summary);
+      setApitranscript(response.data.transcriptWithSpeakers);
+      setApianalysis(response.data.jsonconvertedanalysis);
 
       console.log(response.data.jsonconvertedsummary.summary);
       console.log(response.data.transcriptWithSpeakers);
@@ -231,7 +231,7 @@ export default function Component() {
                     </div>
                   </CardContent>
 
-                  {/* <CardContent>
+                  <CardContent>
                     <div>
                       Summary:
                       {apisummary.map((item, index) => (
@@ -280,7 +280,7 @@ export default function Component() {
                         </div>
                       ))}
                     </div>
-                  </CardContent> */}
+                  </CardContent>
                 </Card>
               </div>
             )}
@@ -290,4 +290,9 @@ export default function Component() {
     </>
   );
 }
+
+
+
+
+
 

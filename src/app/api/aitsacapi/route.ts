@@ -8,7 +8,7 @@ import Groq from "groq-sdk";
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-const systemPromptFolder = 'system_prompts';
+const systemPromptFolder = '/public/system_prompts';
 
 interface ChatCompletionMessageParam {
   role: 'system' | 'user' | 'assistant';
@@ -72,7 +72,15 @@ const llmResponse = async (query: string, conversationHistory: ChatCompletionMes
 
 
 const getCallAnalysis = async (systemPromptFile: string, transcriptWithSpeakers: any) => {
+
+  // console.log(systemPromptFile);
+
+
   const systemPrompt = getSystemPrompt(systemPromptFile);
+
+  // console.log(systemPrompt);
+
+
   const conversationHistory: ChatCompletionMessageParam[] = [...systemPrompt];
 
   transcriptWithSpeakers.forEach((utterance: any) => {
@@ -176,10 +184,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const jsonconvertedanalysis = convertAnalysisToJson(callAnalysis);
 
-    
-    console.log(jsonconvertedanalysis);
-    console.log(transcriptWithSpeakers);
-    console.log(jsonconvertedsummary);
+    console.log(callAnalysis);
+
+
+    // console.log("This is Transcript",transcriptWithSpeakers);
+    // console.log("This is Summary ", jsonconvertedsummary);
+    // console.log("This is Analysis ", jsonconvertedanalysis);
     
     return NextResponse.json({transcriptWithSpeakers , jsonconvertedsummary , jsonconvertedanalysis });
 
