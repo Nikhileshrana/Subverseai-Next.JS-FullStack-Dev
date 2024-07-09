@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardDescription, CardTitle, CardContent } from "@/components/ui/card";
 import axios from "axios";
 import { Toaster } from "@/components/ui/sonner"
+import Loading from "@/app/components/Loading"
+import { set } from 'mongoose';
+import { useRouter } from 'next/navigation'
 
 interface TranscriptItem {
   transcript: string;
@@ -51,23 +54,29 @@ interface AnalysisItem {
 
 
 export default function Component() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("overview");
   const [audioUrl, setAudioUrl] = useState("");
   const [usecase, setUsecase] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [apianalysis, setApianalysis] = useState<AnalysisItem>();
   const [apisummary, setApisummary] = useState<string[]>([]);
   const [apitranscript, setApitranscript] = useState<TranscriptItem[]>([]);
 
   const runcsvtojsonapi = async () => {
+    setIsLoading(true);
     const response = await axios.post("/api/runcsvtojsonapi");
     toast(response.data.message);
+    setIsLoading(false);
   };
 
   const aitsacapi = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.post('/api/aitsacapi', { audioUrl, usecase });
 
+      setIsLoading(false);
       setApisummary(response.data.jsonconvertedsummary.summary);
       setApitranscript(response.data.transcriptWithSpeakers);
       setApianalysis(response.data.jsonconvertedanalysis);
@@ -82,8 +91,17 @@ export default function Component() {
     }
   };
 
+
+
+
   return (
     <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+            <div></div>
+      )}
+
     <Toaster />
       <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
         <div className="hidden border-r bg-muted/40 lg:block">
@@ -136,7 +154,7 @@ export default function Component() {
                 </Button>
                 <Button
                   variant={"ghost"}
-                  onClick={() => setActiveTab("analytics")}
+                  onClick={()=>{router.push('/Data', { scroll: false })}}
                   className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all"
                 >
                   <svg
@@ -208,20 +226,6 @@ export default function Component() {
               </div>
             )}
 
-            {activeTab === "analytics" && (
-              <div className="grid gap-6">
-                <Card className="flex flex-col">
-                  <CardHeader>
-                    <CardTitle>Call Center and Analytics</CardTitle>
-                    <CardDescription>Detailed analytics and insights for your business.</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Link href="/Data">Enter Analytics</Link>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
-
             {activeTab === "upload" && (
               <div className="grid gap-6">
                 <Card className="flex flex-col">
@@ -234,7 +238,9 @@ export default function Component() {
 
                     <div className="flex gap-2 flex-col md:flex-row justify-around">
                       <Link href="https://docs.google.com/spreadsheets/d/1dAGnPNpNVZ2S7qjZQcYBRqFhwsXtHlgfllRAi18HFsk/edit?gid=0#gid=0"><Button>Upload Data Manually / .CSV</Button></Link>
-                      <Button onClick={runcsvtojsonapi}>Save Google Sheet Data to DB</Button>
+                      
+                        <Button onClick={runcsvtojsonapi}>Save Google Sheet Data to DB</Button>
+
                     </div>
                     
                   </CardHeader>
@@ -263,7 +269,9 @@ export default function Component() {
                         <option value="Insurance_Sales">Insurance Sales</option>
                         <option value="Payments_Service">Payments Service</option>
                       </select>
-                      <Button onClick={aitsacapi}>Test Now</Button>
+                      
+                        <Button onClick={aitsacapi}>Test Now</Button>
+                    
                     </div>
                   </CardContent>
 

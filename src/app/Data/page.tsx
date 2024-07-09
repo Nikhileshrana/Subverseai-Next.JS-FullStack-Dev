@@ -8,6 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
+import axios from "axios";
 
 
 interface Utterance {
@@ -25,17 +26,12 @@ interface TranscriptData {
     };
 }
 
-interface Customer {
-    CallID: number;
-    Category: string;
-    AgentName: string;
-    CustomerID: string;
-    CustomerSentiment: string;
-    CallCompletionStatus: string;
-    IssueResolvedStatus: string;
-    call_rec: string;
-    AgentEmpathy: string;
-    AgentPerformance: string;
+interface Userdata {
+    Call_ID: number;
+    Agent_Name: string;
+    Customer_ID: string;
+    Usecase: string;
+    Call_Recording_URL : string
 }
 
 export default function Data() {
@@ -78,10 +74,22 @@ export default function Data() {
     };
 
 
+    const [userdata, setuserdata] = useState<Userdata[]>([]);
+    const getuserdatafromapi = async () =>
+    {
+        const response = await axios.post("/api/getcalldata");
+        await setuserdata(response.data);
+        console.log(response.data);
+    }
+
+
 
     return (
         <>
-            <div className="p-2 text-right px-5">
+
+<Button onClick={getuserdatafromapi}>Click to get User Data</Button>
+
+            <div className="p-2 text-left px-5">
                 <Link href="/Dashboard_2">
                     <Button variant="outline">Back</Button>
                 </Link>
@@ -91,43 +99,18 @@ export default function Data() {
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">Call ID</TableHead>
-                        <TableHead>Category</TableHead>
-                        <TableHead className="text-center">Agent Name</TableHead>
+                        <TableHead>Agent Name</TableHead>
                         <TableHead className="text-center">Customer ID</TableHead>
-                        <TableHead className="text-center">Customer Sentiment</TableHead>
-                        <TableHead className="text-center">Call Completion Status</TableHead>
-                        <TableHead className="text-center">Issue Resolved Status</TableHead>
+                        <TableHead className="text-center">Usecase</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {customerlist.map((customer) => (
-                        <TableRow key={customer.CallID}>
-                            <TableCell className="font-medium">{customer.CallID}</TableCell>
-                            <TableCell>{customer.Category}</TableCell>
-                            <TableCell>
-                                <Popover>
-                                    <PopoverTrigger asChild>
-                                        <Button className="w-full text-center" variant="outline">
-                                            {customer.AgentName}
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-80">
-                                        <div className="grid gap-4">
-                                            <div className="space-y-2">
-                                                <h4 className="font-medium leading-none">Agent Info</h4>
-                                                <p className="text-sm text-muted-foreground">
-                                                    <p>Agent Empathy - {customer.AgentEmpathy}</p>
-                                                    <p>Agent Performance - {customer.AgentPerformance}</p>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </PopoverContent>
-                                </Popover>
-                            </TableCell>
-                            <TableCell className="text-center">{customer.CustomerID}</TableCell>
-                            <TableCell className="text-center">{customer.CustomerSentiment}</TableCell>
-                            <TableCell className="text-center">{customer.CallCompletionStatus}</TableCell>
-                            <TableCell className="text-center">{customer.IssueResolvedStatus}</TableCell>
+                    {userdata.map((customer) => (
+                        <TableRow key={customer.Call_ID}>
+                            <TableCell className="font-medium">{customer.Call_ID}</TableCell>
+                            <TableCell className="font-medium">{customer.Agent_Name}</TableCell>
+                            <TableCell className="text-center">{customer.Customer_ID}</TableCell>
+                            <TableCell className="text-center">{customer.Usecase}</TableCell>
                             <TableCell>
                                 <Drawer>
                                     <DrawerTrigger asChild>
@@ -140,8 +123,9 @@ export default function Data() {
                                                     <h2 className="text-xl font-bold">SubverseAI</h2>
                                                 </div>
                                                 <div className="flex-1 overflow-auto">
+                                                    
                                                     <audio
-                                                        src={customer.call_rec}
+                                                        src={customer.Call_Recording_URL}
                                                         controls
                                                         className="w-full"
                                                         ref={audioRef}

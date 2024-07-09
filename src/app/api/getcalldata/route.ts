@@ -9,10 +9,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await dbConnect();
     const data = await Usercall.find({});
     console.log(data);
+
+    return NextResponse.json(data);
  }
  catch(e)
  {
-    console.log("Error in fetching data from getcalldata API");
+    return NextResponse.json("Error in fetching data from getcalldata API");
  }
-  return NextResponse.json({ message: "Hello World" });
+  
 }
