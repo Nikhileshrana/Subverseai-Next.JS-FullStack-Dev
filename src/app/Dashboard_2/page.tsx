@@ -290,9 +290,3 @@ export default function Component() {
     </>
   );
 }
-
-
-
-
-
-

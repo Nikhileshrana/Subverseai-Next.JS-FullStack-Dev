@@ -4,25 +4,19 @@ import path from 'path';
 const { createClient } = require("@deepgram/sdk");
 import Groq from "groq-sdk";
 
-
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-const systemPromptFolder = '/public/system_prompts';
+const systemPromptFolder = path.join(process.cwd(), 'src/system_prompts');
 
 interface ChatCompletionMessageParam {
   role: 'system' | 'user' | 'assistant';
   content: string;
 }
 
-
-
-
-
-
 const getSystemPrompt = (filename: string): ChatCompletionMessageParam[] => {
   const systemPrompt: ChatCompletionMessageParam[] = [];
-  const filePath = path.join(process.cwd(), filename);
+  const filePath = path.join(systemPromptFolder, filename);
 
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   fileContent.split('\n').forEach(line => {
@@ -36,12 +30,6 @@ const getSystemPrompt = (filename: string): ChatCompletionMessageParam[] => {
   return systemPrompt;
 };
 
-
-
-
-
-
-
 const llmResponse = async (query: string, conversationHistory: ChatCompletionMessageParam[]) => {
   const response = await groq.chat.completions.create({
     messages: conversationHistory.concat({ role: "user", content: query }),
@@ -52,7 +40,6 @@ const llmResponse = async (query: string, conversationHistory: ChatCompletionMes
     stream: false,
   });
 
-
   try {
     return response.choices[0]?.message?.content || '{}';
   } catch (error) {
@@ -61,26 +48,8 @@ const llmResponse = async (query: string, conversationHistory: ChatCompletionMes
   }
 };
 
-
-
-
-
-
-
-
-
-
-
 const getCallAnalysis = async (systemPromptFile: string, transcriptWithSpeakers: any) => {
-
-  // console.log(systemPromptFile);
-
-
   const systemPrompt = getSystemPrompt(systemPromptFile);
-
-  // console.log(systemPrompt);
-
-
   const conversationHistory: ChatCompletionMessageParam[] = [...systemPrompt];
 
   transcriptWithSpeakers.forEach((utterance: any) => {
@@ -97,21 +66,13 @@ const getCallAnalysis = async (systemPromptFile: string, transcriptWithSpeakers:
   return [callSummary, callAnalysis];
 };
 
-
-
-
-
-
-
 export async function POST(req: NextRequest, res: NextResponse) {
-
-
   const body = await req.json();
 
   let audioUrl = body.audioUrl;
   let usecase = body.usecase;
 
-  const systemPromptFile = `${systemPromptFolder}/${usecase}.txt`;
+  const systemPromptFile = `${usecase}.txt`;
 
   try {
     const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(
@@ -137,15 +98,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const transcriptWithSpeakers = result.results.utterances;
     const [callSummary, callAnalysis] = await getCallAnalysis(systemPromptFile, transcriptWithSpeakers);
 
-
-
     const jsonconvertedsummary = convertsummarytojson(callSummary);
-    // console.log(jsonconvertedsummary);
-
-
-
-
-
 
     interface Analysis {
       [key: string]: {
@@ -162,36 +115,25 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const convertAnalysisToJson = (text: string): string[] => {
       const analysisArray: string[] = [];
       const lines = text.trim().split('\n').filter(line => line.trim() !== '');
-    
+
       lines.forEach(line => {
         if (line.includes(':')) {
           const [key, ...valueParts] = line.split(': ');
-          const value = valueParts.join(': ');  // Handles cases where the value contains a colon
+          const value = valueParts.join(': ');
           if (value) {
             analysisArray.push(`${key.trim()}: ${value.trim()}`);
           }
         }
       });
-    
+
       return analysisArray;
     };
-
-
-
-
-
-
 
     const jsonconvertedanalysis = convertAnalysisToJson(callAnalysis);
 
     console.log(callAnalysis);
 
-
-    // console.log("This is Transcript",transcriptWithSpeakers);
-    // console.log("This is Summary ", jsonconvertedsummary);
-    // console.log("This is Analysis ", jsonconvertedanalysis);
-    
-    return NextResponse.json({transcriptWithSpeakers , jsonconvertedsummary , jsonconvertedanalysis });
+    return NextResponse.json({ transcriptWithSpeakers, jsonconvertedsummary, jsonconvertedanalysis });
 
   } catch (error) {
     console.error('Error during transcription:', error);
@@ -199,22 +141,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
   }
 }
 
-
-
-
-
-
-
-
 function convertsummarytojson(summary: string): { summary: string[] } {
-  // Split the summary into individual bullet points
   const points = summary.trim().split("\n* ");
-  points.shift(); // Remove the first element (empty string)
+  points.shift();
 
-  // Create an object to store the summary array
   const conversation: { summary: string[] } = { summary: [] };
 
-  // Loop through each bullet point and push into the summary array
   points.forEach(point => {
     conversation.summary.push(point.trim());
   });
