@@ -4,11 +4,11 @@ const Usercall = new mongoose.Schema({
     Call_ID: {
         type: String,
         required: true,
+        unique: true,
     },
     Customer_ID: {
         type: String,
         required: true,
-        unique: true,
     },
     Agent_Name: {
         type: String,
@@ -17,6 +17,10 @@ const Usercall = new mongoose.Schema({
     Call_Recording_URL: {
         type: String,
         required: true,
+    },
+    Usecase : {
+        type : String,
+        required : true
     },
 });
 

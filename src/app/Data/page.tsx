@@ -9,13 +9,11 @@ import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/
 import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
 
+
 interface Utterance {
     start: number;
-    end: number;
     confidence: number;
-    punctuated_word: string;
     speaker: number;
-    speaker_confidence: number;
     transcript: string;
 }
 

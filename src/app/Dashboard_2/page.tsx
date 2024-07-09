@@ -1,9 +1,12 @@
 "use client"
+import { Suspense } from 'react'
 import { useState, useEffect } from "react";
+import { toast } from "sonner"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardDescription, CardTitle, CardContent } from "@/components/ui/card";
 import axios from "axios";
+import { Toaster } from "@/components/ui/sonner"
 
 interface TranscriptItem {
   transcript: string;
@@ -11,32 +14,55 @@ interface TranscriptItem {
   speaker: number;
 }
 
-interface ApiAnalysis {
-  [key: string]: {
-    value: string;
-  };
+interface AnalysisItem {
+  Customer_Sentiment: {
+    score: string,
+    detail: string
+  },
+  Customer_Intent: {
+    score: string,
+    detail: string    
+  },
+  Agent_Empathy: {
+    score: string,
+    detail: string
+  },
+  Agent_Promptness_and_Responsiveness: {
+    score: string,
+    detail: string
+  },
+  Agent_Knowledge: {
+    score: string,
+    detail: string  
+  },
+  Call_Flow_Optimization: {
+    score: string,
+    detail: string
+  },
+  Call_Completion_Status: { 
+    score: string,
+    detail: string
+  },
+  Issue_Resolved_Status: { 
+    score: string,
+    detail: string
+  }
 }
 
-interface AnalysisItem {
-  value: string;
-}
 
 export default function Component() {
   const [activeTab, setActiveTab] = useState("overview");
   const [audioUrl, setAudioUrl] = useState("");
   const [usecase, setUsecase] = useState("");
 
-  const [apianalysis, setApianalysis] = useState<AnalysisItem[]>([]);
+  const [apianalysis, setApianalysis] = useState<AnalysisItem>();
   const [apisummary, setApisummary] = useState<string[]>([]);
   const [apitranscript, setApitranscript] = useState<TranscriptItem[]>([]);
 
   const runcsvtojsonapi = async () => {
-    await axios.post("/api/runcsvtojsonapi");
+    const response = await axios.post("/api/runcsvtojsonapi");
+    toast(response.data.message);
   };
-
-  useEffect(() => {
-    runcsvtojsonapi();
-  }, []);
 
   const aitsacapi = async () => {
     try {
@@ -46,9 +72,9 @@ export default function Component() {
       setApitranscript(response.data.transcriptWithSpeakers);
       setApianalysis(response.data.jsonconvertedanalysis);
 
-      console.log(response.data.jsonconvertedsummary.summary);
-      console.log(response.data.transcriptWithSpeakers);
-      console.log(response.data.jsonconvertedanalysis);
+      // console.log(response.data.jsonconvertedsummary.summary);
+      // console.log(response.data.transcriptWithSpeakers);
+      // console.log(response.data.jsonconvertedanalysis);
 
 
     } catch (error) {
@@ -58,6 +84,7 @@ export default function Component() {
 
   return (
     <>
+    <Toaster />
       <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
         <div className="hidden border-r bg-muted/40 lg:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
@@ -198,9 +225,18 @@ export default function Component() {
             {activeTab === "upload" && (
               <div className="grid gap-6">
                 <Card className="flex flex-col">
-                  <CardHeader>
+                  <CardHeader className="flex-row justify-between">
+                    
+                    <div>
                     <CardTitle>Upload Data</CardTitle>
                     <CardDescription>Upload a URL to analyze and get insights.</CardDescription>
+                    </div>
+
+                    <div className="flex gap-2 flex-col md:flex-row justify-around">
+                      <Link href="https://docs.google.com/spreadsheets/d/1dAGnPNpNVZ2S7qjZQcYBRqFhwsXtHlgfllRAi18HFsk/edit?gid=0#gid=0"><Button>Upload Data Manually / .CSV</Button></Link>
+                      <Button onClick={runcsvtojsonapi}>Save Google Sheet Data to DB</Button>
+                    </div>
+                    
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-center w-full h-32 border-2 border-dashed rounded-md border-muted-foreground/20 hover:border-primary transition-colors">
@@ -227,7 +263,7 @@ export default function Component() {
                         <option value="Insurance_Sales">Insurance Sales</option>
                         <option value="Payments_Service">Payments Service</option>
                       </select>
-                      <Button onClick={aitsacapi}>Submit</Button>
+                      <Button onClick={aitsacapi}>Test Now</Button>
                     </div>
                   </CardContent>
 
@@ -245,16 +281,25 @@ export default function Component() {
 
                     <br /><br /><br /><br /><br />
 
+                    
+
                     <div>
-                      Analysis:
-                      {apianalysis.map((item, index) => (
-                        <div key={index}>
-                          <br />
-                          {item.toString()}
-                          <br />
+                      <h3>Analysis:</h3>
+                      {apianalysis && (
+                        <div>
+                          <p>Customer Sentiment Analysis: {apianalysis.Customer_Sentiment.score} - {apianalysis.Customer_Sentiment.detail}</p>
+                          <p>Customer Intent Analysis: {apianalysis.Customer_Intent.score} - {apianalysis.Customer_Intent.detail}</p>
+                          <p>Agent Empathy: {apianalysis.Agent_Empathy.score} - {apianalysis.Agent_Empathy.detail}</p>
+                          <p>Agent Promptness and Responsiveness: {apianalysis.Agent_Promptness_and_Responsiveness.score} - {apianalysis.Agent_Promptness_and_Responsiveness.detail}</p>
+                          <p>Agent Knowledge: {apianalysis.Agent_Knowledge.score} - {apianalysis.Agent_Knowledge.detail}</p>
+                          <p>Call Flow Optimization: {apianalysis.Call_Flow_Optimization.score} - {apianalysis.Call_Flow_Optimization.detail}</p>
+                          <p>Call Completion Status: {apianalysis.Call_Completion_Status.score} - {apianalysis.Call_Completion_Status.detail}</p>
+                          <p>Issue Resolved Status: {apianalysis.Issue_Resolved_Status.score} - {apianalysis.Issue_Resolved_Status.detail}</p>
                         </div>
-                      ))}
+                      )}
                     </div>
+
+
 
 
                     <br /><br /><br /><br /><br />
