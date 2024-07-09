@@ -4,19 +4,13 @@ import { HeroHighlight, Highlight } from "@/app/components/ui/hero-highlight";
 import { FlipWords } from "@/app/components/ui/flip-words";
 import { ContainerScroll } from "@/app/components/ui/container-scroll-animation";
 import { SparklesCore } from "@/app/components/ui/sparkles";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { HoverEffect } from "@/app/components/ui/card-hover-effect";
-import {
-  GlowingStarsBackgroundCard,
-  GlowingStarsDescription,
-  GlowingStarsTitle,
-} from "@/app/components/ui/glowing-stars";
 import { MultiStepLoader as Loader } from "@/app/components/ui/multi-step-loader";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 import { LampContainer } from "@/app/components/ui/lamp";
 import { InfiniteMovingCards } from "@/app/components/ui/infinite-moving-cards";
-import { link } from "fs";
 import {
   Carousel,
   CarouselContent,
@@ -164,11 +158,25 @@ export default function LandingPage() {
   console.log("Designed and Developed by Nikhilesh Rana. Full Stack Developer.");
   console.log("Email - realnikhileshrana@gmail.com");
   console.log("**************************************************************");
-  console.log("Worked on Landing page.");
+  console.log("Landing Page and a total of 15 Page UI Development");
   console.log("Worked on User Authentication.");
   console.log("Worked on Razorpay Payment Integration.");
   console.log("Worked on Credits System");
   console.log("Worked on Restful API for the User to send and recieve files");
+  console.log("Transaction Viewer");
+  console.log("Nodemailer contactus/RequestDemo mail goes to user&admin");
+  console.log("Call Recordings Analytics");
+  console.log("Google Sheets{exceldata} api to database");
+  console.log("using Deepgram ai api for preloaded audio");
+  console.log("Using GROQ api for Analysis and Summary.");
+  console.log("Graph Representation");
+  console.log("Js-Cookie");
+  console.log("Tailwind CSS");
+  console.log("ShadCN");
+  console.log("Acertinity UI");
+  console.log("Next.js");
+  console.log("React.js");
+  console.log("Typescript");
   console.log("**************************************************************");
   console.log("Email - realnikhileshrana@gmail.com");
   console.log("nikhileshrana.tech");
@@ -229,7 +237,7 @@ export default function LandingPage() {
 
 
 
-<div className="bg-black py-20"></div>
+      <div className="bg-black py-20"></div>
 
 
 
@@ -268,87 +276,87 @@ export default function LandingPage() {
 
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-black px-10 sm:px-[7rem]">
-  <div onClick={buttontriggernikhs1} className="bg-gray-950 border rounded-lg overflow-hidden">
-  <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/predictive-chart.png" alt="AI-Powered Voicebot" height={300} width={500} />
-  <div className="p-4 flex justify-between items-end">
-      <div>
-        <h3 className="text-lg font-semibold text-gray-200">Call Analytics & Insight</h3>
-        <p className="text-gray-400 mt-2">
-        Gain actionable insights from your call data with Call Analytics. Monitor performance, identify trends, and improve customer service and efficiency.
-        </p>
-      </div>
-      <svg
-        className="h-4 w-[7rem] ml-2"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M5 12h14" />
-        <path d="m12 5 7 7-7 7" />
-      </svg>
-    </div>
-  </div>
+        <div onClick={buttontriggernikhs1} className="bg-gray-950 border rounded-lg overflow-hidden cursor-pointer">
+          <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/predictive-chart.png" alt="AI-Powered Voicebot" height={300} width={500} />
+          <div className="p-4 flex justify-between items-end">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-200">Call Analytics & Insight</h3>
+              <p className="text-gray-400 mt-2">
+                Gain actionable insights from your call data with Call Analytics. Monitor performance, identify trends, and improve customer service and efficiency.
+              </p>
+            </div>
+            <svg
+              className="h-4 w-[7rem] ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </div>
+        </div>
 
-  <div onClick={buttontriggernikhs2} className="bg-gray-950 border rounded-lg overflow-hidden">
-    <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/customer-service.png" alt="AI-Powered Voicebot" height={300} width={500} />
-    <div className="p-4 flex justify-between items-end">
-      <div>
-        <h3 className="text-lg font-semibold text-gray-200">Agent Copilot</h3>
-        <p className="text-gray-400 mt-2">
-        Empower your agents with our AI-driven Agent Copilot, providing real-time support and guidance to enhance productivity and ensure high-quality interactions.
-        </p>
-      </div>
-      <svg
-        className="h-4 w-[7rem] ml-2"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M5 12h14" />
-        <path d="m12 5 7 7-7 7" />
-      </svg>
-    </div>
-  </div>
+        <div onClick={buttontriggernikhs2} className="bg-gray-950 border rounded-lg overflow-hidden cursor-pointer">
+          <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/customer-service.png" alt="AI-Powered Voicebot" height={300} width={500} />
+          <div className="p-4 flex justify-between items-end">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-200">Agent Copilot</h3>
+              <p className="text-gray-400 mt-2">
+                Empower your agents with our AI-driven Agent Copilot, providing real-time support and guidance to enhance productivity and ensure high-quality interactions.
+              </p>
+            </div>
+            <svg
+              className="h-4 w-[7rem] ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </div>
+        </div>
 
-  <div onClick={buttontriggernikhs3} className="bg-gray-950 border rounded-lg overflow-hidden">
-    <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/live-chat.png" alt="AI-Powered Voicebot" height={300} width={300} />
-    <div className="p-4 flex justify-between items-end">
-      <div>
-        <h3 className="text-lg font-semibold text-gray-200">AI-Powered Voicebot</h3>
-        <p className="text-gray-400 mt-2">
-        Our AI-powered Voicebot automates customer interactions with natural, human-like conversations, reducing wait times and enhancing user experiences.
-        </p>
+        <div onClick={buttontriggernikhs3} className="bg-gray-950 border rounded-lg overflow-hidden cursor-pointer">
+          <Image className="w-full h-auto object-cover px-20 py-8 sm:px-24 sm:py-10" src="/live-chat.png" alt="AI-Powered Voicebot" height={300} width={300} />
+          <div className="p-4 flex justify-between items-end">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-200">AI-Powered Voicebot</h3>
+              <p className="text-gray-400 mt-2">
+                Our AI-powered Voicebot automates customer interactions with natural, human-like conversations, reducing wait times and enhancing user experiences.
+              </p>
+            </div>
+            <svg
+              className="h-4 w-[7rem] ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </div>
+        </div>
       </div>
-      <svg
-        className="h-4 w-[7rem] ml-2"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M5 12h14" />
-        <path d="m12 5 7 7-7 7" />
-      </svg>
-    </div>
-  </div>
-</div>
 
 
 
@@ -570,7 +578,7 @@ export default function LandingPage() {
 
 
 
-<div className="bg-black py-20"></div>
+      <div className="bg-black py-20"></div>
 
 
 
@@ -614,7 +622,7 @@ export default function LandingPage() {
 
 
 
-<div className="bg-black py-20"></div>
+      <div className="bg-black py-20"></div>
 
     </>
   );
