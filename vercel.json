@@ -1,17 +1,15 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "src/api/*.ts",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "src/api/$1"
-      }
-    ],
-    "includeFiles": ["src/system_prompts/**/*"]
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/api/*.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "src/api/$1"
+    }
+  ]
+}
