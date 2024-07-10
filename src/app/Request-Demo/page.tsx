@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import axios from "axios";
 import { toast } from "sonner"
 import { Toaster } from "@/components/ui/sonner";
+import Loading from "@/app/components/Loading";
 
 
 export default function GlobeDemo() {
@@ -414,12 +415,14 @@ export default function GlobeDemo() {
   const [company, setcompany] = useState("");
   const [phone, setphone] = useState("");
   const [message, setmessage] = useState("");
-
+  const [isLoading, setisLoading] = useState(false);
 
   const sendmail = async()=>
   {
 
+    setisLoading(true);
     const response = await axios.post("/api/sendmail", { email, name, company, phone, message });
+    setisLoading(false);
     toast(`Hi , ${name}`, {
       description: response.data.message,
       action: {
@@ -448,6 +451,12 @@ export default function GlobeDemo() {
 
   return (
     <>
+    {isLoading ? (
+        <Loading />
+      ) : (
+            <div></div>
+      )}
+
     <Toaster position="top-center" />
       <div className="flex flex-col md:flex-row w-full items-center justify-center py-10 h-full sm:h-screen md:h-auto dark:bg-black bg-white relative">
       
