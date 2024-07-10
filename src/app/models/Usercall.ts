@@ -22,6 +22,18 @@ const Usercall = new mongoose.Schema({
         type : String,
         required : true
     },
+    Transcript : {
+        type : String,
+        required : true
+    },
+    Summary : {
+        type : String,
+        required : true
+    },
+    Analysis : {
+        type : String,
+        required : true
+    }
 });
 
 export default mongoose.models.Usercall || mongoose.model('Usercall', Usercall);

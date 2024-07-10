@@ -66,7 +66,7 @@ export default function Component() {
 
   const runcsvtojsonapi = async () => {
     setIsLoading(true);
-    const response = await axios.post("/api/runcsvtojsonapi");
+    const response = await axios.post("/api/savecsvtodb");
     toast(response.data.message);
     setIsLoading(false);
   };
@@ -80,12 +80,6 @@ export default function Component() {
       setApisummary(response.data.jsonconvertedsummary.summary);
       setApitranscript(response.data.transcriptWithSpeakers);
       setApianalysis(response.data.jsonconvertedanalysis);
-
-      // console.log(response.data.jsonconvertedsummary.summary);
-      // console.log(response.data.transcriptWithSpeakers);
-      // console.log(response.data.jsonconvertedanalysis);
-
-
     } catch (error) {
       console.error('Error uploading file:', error);
     }

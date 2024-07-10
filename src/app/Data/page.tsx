@@ -87,20 +87,33 @@ export default function Data() {
     };
 
 
+    const fetchmyanalysis = async (Call_ID :string) => {
+        setIsLoading(true);
+        const response = await axios.post("/api/getcallanalysisdata" , {Call_ID: Call_ID});
+
+        setApisummary(response.data.jsonconvertedsummary.summary);
+        setApitranscript(response.data.transcriptWithSpeakers);
+        setApianalysis(response.data.jsonconvertedanalysis);
 
 
-    const fetchmyanalysis = async (Call_Recording_URL: string, Usecase: string) => {
-        try {
-            setIsLoading(true);
-            const response = await axios.post('/api/aitsacapi', { audioUrl: Call_Recording_URL, usecase: Usecase });
-            setIsLoading(false);
-            setApisummary(response.data.jsonconvertedsummary.summary);
-            setApitranscript(response.data.transcriptWithSpeakers);
-            setApianalysis(response.data.jsonconvertedanalysis);
-        } catch (error) {
-            console.error('Error uploading file:', error);
-        }
+        setIsLoading(false);
     };
+
+
+
+
+    // const fetchmyanalysis = async (Call_Recording_URL: string, Usecase: string) => {
+    //     try {
+    //         setIsLoading(true);
+    //         const response = await axios.post('/api/aitsacapi', { audioUrl: Call_Recording_URL, usecase: Usecase });
+    //         setIsLoading(false);
+    //         setApisummary(response.data.jsonconvertedsummary.summary);
+    //         setApitranscript(response.data.transcriptWithSpeakers);
+    //         setApianalysis(response.data.jsonconvertedanalysis);
+    //     } catch (error) {
+    //         console.error('Error uploading file:', error);
+    //     }
+    // };
 
     return (
         <>
@@ -140,7 +153,7 @@ export default function Data() {
                             <TableCell>
                                 <Drawer>
                                     <DrawerTrigger asChild>
-                                        <Button variant="outline" onClick={() => { fetchmyanalysis(customer.Call_Recording_URL, customer.Usecase); }}>View More</Button>
+                                        <Button variant="outline" onClick={() => { fetchmyanalysis(customer.Call_ID.toString()); }}>View More</Button>
                                     </DrawerTrigger>
                                     <DrawerContent>
                                         <div className="grid grid-cols-[40%_1fr] h-screen w-full bg-white text-white">
@@ -196,7 +209,6 @@ export default function Data() {
                                                     <DrawerClose asChild>
                                                         <Button onClick={() => {
                                                             setIsLoading(true);
-                                                            setuserdata([]);
                                                             setApianalysis(undefined);
                                                             setApisummary([]);
                                                             setApitranscript([]);
