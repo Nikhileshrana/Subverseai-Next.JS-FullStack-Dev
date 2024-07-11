@@ -8,6 +8,15 @@ import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import axios from "axios";
 import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+
+
+
+
 
 interface TranscriptItem {
     transcript: string;
@@ -40,22 +49,22 @@ interface AnalysisItem {
         score: string;
         detail: string;
     };
-    Call_Completion_Status: {
-        score: string;
-        detail: string;
-    };
-    Issue_Resolved_Status: {
-        score: string;
-        detail: string;
-    };
+    Call_Completion_Status: string;
+    Issue_Resolved_Status: string;
 }
 
 interface Userdata {
+    Issue_Resolved_Status: any;
     Call_ID: number;
     Agent_Name: string;
     Customer_ID: string;
     Usecase: string;
     Call_Recording_URL: string;
+
+
+
+    Analysis: AnalysisItem;
+
 }
 
 
@@ -83,17 +92,14 @@ export default function Data() {
         setIsLoading(true);
         const response = await axios.post("/api/getcalldata");
         setIsLoading(false);
-        setuserdata(response.data.data);
-        
-        console.log(response.data.Analysis);
-
-        
+        setuserdata(response.data);
+        console.log(response.data);
     };
 
 
-    const fetchmyanalysis = async (Call_ID :string) => {
+    const fetchmyanalysis = async (Call_ID: string) => {
         setIsLoading(true);
-        const response = await axios.post("/api/getcallanalysisdata" , {Call_ID: Call_ID});
+        const response = await axios.post("/api/getcallanalysisdata", { Call_ID: Call_ID });
 
         setApisummary(response.data.jsonconvertedsummary.summary);
         setApitranscript(response.data.transcriptWithSpeakers);
@@ -119,32 +125,53 @@ export default function Data() {
                     <Button variant="outline">Back</Button>
                 </Link>
 
-                <Button className=" bg-blue-400 hover:bg-blue-500" onClick={getuserdatafromapi}>Click to get User Data</Button>
+                <Button className=" bg-blue-400 hover:bg-blue-500" onClick={getuserdatafromapi}>Load Data</Button>
             </div>
 
             <Table className="h-[60vh]">
-                <TableCaption>To See Data Click on Top Right Button. :)</TableCaption>
+                <TableCaption>To See Data Click on Top Right Button. :) </TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Call ID</TableHead>
-                        <TableHead>Agent Name</TableHead>
+                        <TableHead className="text-center">Call ID</TableHead>
+                        <TableHead className="text-center">Agent Name</TableHead>
                         <TableHead className="text-center">Customer ID</TableHead>
                         <TableHead className="text-center">Usecase</TableHead>
-                        {/* <TableHead className="text-center">Issue Resolution</TableHead>
+                        <TableHead className="text-center">Issue Resolution</TableHead>
                         <TableHead className="text-center">Customer Sentiment</TableHead>
-                        <TableHead className="text-center">Customer Responsiveness</TableHead> */}
+                        <TableHead className="text-center">Customer Responsiveness</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {userdata.map((customer) => (
                         <TableRow key={customer.Call_ID}>
-                            <TableCell className="font-medium">{customer.Call_ID}</TableCell>
-                            <TableCell className="font-medium">{customer.Agent_Name}</TableCell>
+                            <TableCell className="font-medium text-center">{customer.Call_ID}</TableCell>
+                            <TableCell className="font-medium text-center">
+                                <Popover>
+                                    <PopoverTrigger><Button className="w-[9vw]" variant="default">{customer.Agent_Name}</Button></PopoverTrigger>
+                                    <PopoverContent className="flex-col justify-between">
+                                        <div className="flex bg-blue-500 justify-between my-2 px-2 py-1  rounded-xl">
+                                            <div className="self-center font-semibold">Agent Empathy</div>
+                                            <div className="bg-blue-600 p-2 rounded-2xl">{customer.Analysis.Agent_Empathy.score}/10</div>
+                                        </div>
+                                        <div className="flex bg-blue-500 justify-between my-2 px-2 py-1  rounded-xl">
+                                            <div className="self-center font-semibold">Responsiveness</div>
+                                            <div className="bg-blue-600 p-2 rounded-2xl">{customer.Analysis.Agent_Promptness_and_Responsiveness.score}/10</div>
+                                        </div>
+                                        <div className="flex bg-blue-500 justify-between my-2 px-2 py-1  rounded-xl">
+                                            <div className="self-center font-semibold">Agent Knowledge</div>
+                                            <div className="bg-blue-600 p-2 rounded-2xl">{customer.Analysis.Agent_Knowledge.score}/10</div>
+                                        </div>
+                                    </PopoverContent>
+                                </Popover>
+                            </TableCell>
                             <TableCell className="text-center">{customer.Customer_ID}</TableCell>
                             <TableCell className="text-center">{customer.Usecase}</TableCell>
+                            <TableCell className="text-center">{customer.Analysis.Issue_Resolved_Status}</TableCell>
+                            <TableCell className="text-center">{customer.Analysis.Customer_Sentiment.score}</TableCell>
+                            <TableCell className="text-center">{customer.Analysis.Agent_Promptness_and_Responsiveness.score}</TableCell>
 
 
-                            
+
 
 
                             <TableCell>
@@ -218,59 +245,68 @@ export default function Data() {
 
                                                     <div>
                                                         {apianalysis && (
-                                                            <div>
-                                                                <div>
-                                                                    <div>Customer Sentiment Analysis: <span className="text-red-600">{apianalysis.Customer_Sentiment.score}/10</span></div>
-                                                                    <div>{apianalysis.Customer_Sentiment.detail}</div>
+                                                            <div className="flex flex-col gap-6 bg-yellow-300 text-black w-[97%] p-4 rounded-2xl ">
+                                                                <div className="border p-3 rounded-xl bg-yellow-200">
+                                                                    <div className="flex justify-between">
+                                                                    <span className="font-bold text-xl">Customer Sentiment Analysis</span><span className={getTextColor(apianalysis.Customer_Sentiment.score)}>{apianalysis.Customer_Sentiment.score}/10</span>
+                                                                    </div>
+                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-white">{apianalysis.Customer_Sentiment.detail}</div>
                                                                 </div>
-<br />
-                                                                <div>
-                                                                    <div>Customer Intent Analysis: {apianalysis.Customer_Intent.score}/10</div>
-                                                                    <div>{apianalysis.Customer_Intent.detail}</div>
-                                                                </div>
-<br />
-                                                                <div>
-                                                                    <div>Agent Empathy: {apianalysis.Agent_Empathy.score}/10</div>
-                                                                    <div>{apianalysis.Agent_Empathy.detail}</div>
-                                                                </div>
-<br />
-                                                                <div>
-                                                                    <div>Agent Promptness and Responsiveness: {apianalysis.Agent_Promptness_and_Responsiveness.score}/10</div>
-                                                                    <div>{apianalysis.Agent_Promptness_and_Responsiveness.detail}</div>
-                                                                </div>
-                                                                <br />
-                                                                <div>
-                                                                    <div>Agent Knowledge: {apianalysis.Agent_Knowledge.score}/10</div>
-                                                                    <div>{apianalysis.Agent_Knowledge.detail}</div>
-                                                                </div>
-                                                                <br />
-                                                                <div>
-                                                                    <div>Call Flow Optimization: {apianalysis.Call_Flow_Optimization.score}/10</div>
-                                                                    <div>{apianalysis.Call_Flow_Optimization.detail}</div>
-                                                                </div>
-                                                                <br />
-                                                                <div>
-                                                                    <div>Call Completion Status: {apianalysis.Call_Completion_Status.score}/10</div>
-                                                                    <div>{apianalysis.Call_Completion_Status.detail}</div>
-                                                                </div>
-                                                                <br />
-                                                                <div>
-                                                                    <div>Issue Resolved Status: {apianalysis.Issue_Resolved_Status.score}/10</div>
-                                                                    <div>{apianalysis.Issue_Resolved_Status.detail}</div>
-                                                                </div>
-                                                                <br /><br /><br />
 
+                                                                <div className="border p-3 rounded-xl bg-yellow-200">
+                                                                    <div className="flex justify-between">
+                                                                    <span className="font-bold text-xl">Customer Intent Analysis</span> <span className={getTextColor(apianalysis.Customer_Intent.score)}>{apianalysis.Customer_Intent.score}/10</span>
+                                                                    </div>
+                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-white">{apianalysis.Customer_Intent.detail}</div>
+                                                                </div>
+
+                                                                <div className="border p-3 rounded-xl bg-yellow-200">
+                                                                    <div className="flex justify-between">
+                                                                    <span className="font-bold text-xl">Agent Empathy</span> <span className={getTextColor(apianalysis.Agent_Empathy.score)}>{apianalysis.Agent_Empathy.score}/10</span>
+                                                                    </div>
+                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-white">{apianalysis.Agent_Empathy.detail}</div>
+                                                                </div>
+
+                                                                <div className="border p-3 rounded-xl bg-yellow-200">
+                                                                    <div className="flex justify-between">
+                                                                    <span className="font-bold text-xl">Agent Promptness and Responsiveness</span> <span className={getTextColor(apianalysis.Agent_Promptness_and_Responsiveness.score)}>{apianalysis.Agent_Promptness_and_Responsiveness.score}/10</span>
+                                                                    </div>
+                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-white">{apianalysis.Agent_Promptness_and_Responsiveness.detail}</div>
+                                                                </div>
+
+                                                                <div className="border p-3 rounded-xl bg-yellow-200">
+                                                                    <div className="flex justify-between">
+                                                                    <span className="font-bold text-xl">Agent Knowledge</span><span className={getTextColor(apianalysis.Agent_Knowledge.score)}>{apianalysis.Agent_Knowledge.score}/10</span>
+                                                                    </div>
+                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-white">{apianalysis.Agent_Knowledge.detail}</div>
+                                                                </div>
+
+                                                                <div className="border p-3 rounded-xl bg-yellow-200">
+                                                                    <div className="flex justify-between">
+                                                                    <span className="font-bold text-xl">Call Flow Optimization</span> <span className={getTextColor(apianalysis.Call_Flow_Optimization.score)}>{apianalysis.Call_Flow_Optimization.score}/10</span>
+                                                                    </div>
+                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-white">{apianalysis.Call_Flow_Optimization.detail}</div>
+                                                                </div>
+
+                                                                <div className="border p-3 rounded-xl bg-yellow-200 flex justify-between">
+                                                                    <div className="font-bold text-xl">Call Completion Status </div>
+                                                                    <div className="font-bold p-2 bg-white rounded-2xl"> {apianalysis.Call_Completion_Status}</div>
+                                                                </div>
+     
+                                                                <div className="border p-3 rounded-xl bg-yellow-200 flex justify-between">
+                                                                    <div className="font-bold text-xl">Issue Resolved Status </div>
+                                                                    <div className="font-bold p-2 bg-white rounded-2xl">{apianalysis.Issue_Resolved_Status}</div>
+                                                                </div>
                                                             </div>
                                                         )}
                                                     </div>
 
-                                                    <div>
-                                                        <h3 className="text-lg font-bold">Summary</h3>
+<br /><br /><br />
+                                                    <div className="flex flex-col gap-6 bg-yellow-300 text-black w-[97%] p-4 rounded-2xl ">
+                                                        <h3 className="text-2xl font-bold">Summary</h3>
                                                         {apisummary.map((item, index) => (
-                                                            <div key={index}>
-                                                                <br />
+                                                            <div className="border rounded-2xl p-2 bg-yellow-200 font-semibold" key={index}>
                                                                 {item}
-                                                                <br />
                                                             </div>
                                                         ))}
                                                     </div>
@@ -287,3 +323,17 @@ export default function Data() {
         </>
     );
 }
+
+
+
+
+
+const getTextColor = (score:string) => {
+    if (Number(score) > 7) {
+        return "text-green-600 p-2 bg-white font-semibold rounded-2xl";
+    } else if (Number(score) >= 4 && Number(score) <= 7) {
+        return "text-yellow-600 p-2 bg-white font-semibold rounded-2xl";
+    } else {
+        return "text-red-600";
+    }
+};
