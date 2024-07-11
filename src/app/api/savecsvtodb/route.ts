@@ -1,4 +1,3 @@
-// This API is used to import data from CSV to MongoDB Database. This is Developed by Nikhilesh Rana. https://www.nikhileshrana.tech
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '../../lib/dbConnect';
 import Usercall from '../../models/Usercall';
@@ -64,7 +63,7 @@ const getCallAnalysis = async (systemPromptFile: string, transcriptWithSpeakers:
   const summaryQuery = "There could be ASR and speaker recognition errors. Assume the call is getting transferred to the supervisor. Please write a conversation summary with bullet points wherever applicable, for the supervisor to get an overall understanding of conversation so far.";
   const callSummary = await llmResponse(summaryQuery, conversationHistory);
 
-  const analysisQuery = "There could be ASR and speaker recognition errors. I'm looking to analyze conversations for call center analytics. Perform Customer Sentiment Analysis, Customer Intent Analysis, Agent Empathy, Agent Promptness and Responsiveness, Agent Knowledge, Call Flow Optimization, Call Completion Status, and Issue Resolved Status. Output should be in JSON format without headings. For ratings, use numbers like 8 instead of formats like 8/10. The JSON structure should follow this format: { Customer_Sentiment: {score, detail}, Customer_Intent: {score, detail}, Agent_Empathy: {score, detail}, Agent_Promptness_and_Responsiveness: {score, detail}, Agent_Knowledge: {score, detail}, Call_Flow_Optimization: {score, detail}, Call_Completion_Status: {score, detail}, Issue_Resolved_Status: {score, detail} }. Ensure each metric includes a score and a detail. Remove the heading and just provide the JSON";
+  const analysisQuery = "There could be ASR and speaker recognition errors. I'm looking to analyze conversations for call center analytics. Perform Customer Sentiment Analysis, Customer Intent Analysis, Agent Empathy, Agent Promptness and Responsiveness, Agent Knowledge, Call Flow Optimization, Call Completion Status(true /false), and Issue Resolved Status (true /false). Output should be in JSON format without headings. For ratings, use numbers like 8 instead of formats like 8/10. The JSON structure should follow this format: { Customer_Sentiment: {score, detail}, Customer_Intent: {score, detail}, Agent_Empathy: {score, detail}, Agent_Promptness_and_Responsiveness: {score, detail}, Agent_Knowledge: {score, detail}, Call_Flow_Optimization: {score, detail}, Call_Completion_Status: {score, detail}, Issue_Resolved_Status: {score, detail} }. Ensure each metric includes a score and a detail. Remove the heading and just provide the JSON ";
   const callAnalysis = await llmResponse(analysisQuery, conversationHistory);
 
   return [callSummary, callAnalysis];
@@ -89,6 +88,15 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await dbConnect();
 
     for (let i = 1; i < response.data.data.length; i++) {
+      const callID = response.data.data[i].Call_ID;
+      
+      // Check if the record already exists in the database
+      const existingRecord = await Usercall.findOne({ Call_ID: callID });
+      if (existingRecord) {
+        console.log(`Record already exists for Call_ID: ${callID}`);
+        continue; // Skip this entry if it already exists
+      }
+
       let usecase = response.data.data[i].Usecase;
       let audioUrl = response.data.data[i].Call_Recording_URL;
       let systemPromptFile = `${usecase}.txt`;
@@ -110,7 +118,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
         );
 
         if (error) {
-          console.error('Error during transcription : URL /Usecase Incorrect');
+          console.error('Error during transcription: URL / Usecase Incorrect');
+          continue;
         }
 
         const transcriptWithSpeakers = result.results.utterances.map((utterance: any) => ({
@@ -126,7 +135,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         try {
           await Usercall.create({
-            Call_ID: response.data.data[i].Call_ID,
+            Call_ID: callID,
             Customer_ID: response.data.data[i].Customer_ID,
             Agent_Name: response.data.data[i].Agent_Name,
             Call_Recording_URL: response.data.data[i].Call_Recording_URL,
@@ -138,14 +147,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
           console.log("Data inserted successfully for row:", i);
         } catch (e) {
-          console.error('Data Already Present in Database for row:', i);
+          console.error('Data already present in database for row:', i);
         }
       } catch (e) {
-        console.error('Error during transcription:',i);
+        console.error('Error during transcription:', i);
       }
     }
 
-    return NextResponse.json({message:"Data Inserted Successfully"});
+    return NextResponse.json({ message: "Data Inserted Successfully" });
   } catch (axiosError) {
     console.error('Axios error:', axiosError);
     return NextResponse.json({ error: 'Failed to fetch data' });

@@ -58,6 +58,7 @@ interface Userdata {
     Call_Recording_URL: string;
 }
 
+
 export default function Data() {
     const [showAudio, setShowAudio] = useState<boolean>(false);
     const [currentTime, setCurrentTime] = useState<number>(0);
@@ -67,7 +68,6 @@ export default function Data() {
     const [apianalysis, setApianalysis] = useState<AnalysisItem>();
     const [apisummary, setApisummary] = useState<string[]>([]);
     const [apitranscript, setApitranscript] = useState<TranscriptItem[]>([]);
-
 
     // Function to handle playing audio from a specific time
     const playFromSpecificTime = (time: number) => {
@@ -83,7 +83,11 @@ export default function Data() {
         setIsLoading(true);
         const response = await axios.post("/api/getcalldata");
         setIsLoading(false);
-        setuserdata(response.data);
+        setuserdata(response.data.data);
+        
+        console.log(response.data.Analysis);
+
+        
     };
 
 
@@ -95,25 +99,10 @@ export default function Data() {
         setApitranscript(response.data.transcriptWithSpeakers);
         setApianalysis(response.data.jsonconvertedanalysis);
 
-
+        console.log(response.data);
         setIsLoading(false);
     };
 
-
-
-
-    // const fetchmyanalysis = async (Call_Recording_URL: string, Usecase: string) => {
-    //     try {
-    //         setIsLoading(true);
-    //         const response = await axios.post('/api/aitsacapi', { audioUrl: Call_Recording_URL, usecase: Usecase });
-    //         setIsLoading(false);
-    //         setApisummary(response.data.jsonconvertedsummary.summary);
-    //         setApitranscript(response.data.transcriptWithSpeakers);
-    //         setApianalysis(response.data.jsonconvertedanalysis);
-    //     } catch (error) {
-    //         console.error('Error uploading file:', error);
-    //     }
-    // };
 
     return (
         <>
@@ -141,6 +130,9 @@ export default function Data() {
                         <TableHead>Agent Name</TableHead>
                         <TableHead className="text-center">Customer ID</TableHead>
                         <TableHead className="text-center">Usecase</TableHead>
+                        {/* <TableHead className="text-center">Issue Resolution</TableHead>
+                        <TableHead className="text-center">Customer Sentiment</TableHead>
+                        <TableHead className="text-center">Customer Responsiveness</TableHead> */}
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -150,6 +142,11 @@ export default function Data() {
                             <TableCell className="font-medium">{customer.Agent_Name}</TableCell>
                             <TableCell className="text-center">{customer.Customer_ID}</TableCell>
                             <TableCell className="text-center">{customer.Usecase}</TableCell>
+
+
+                            
+
+
                             <TableCell>
                                 <Drawer>
                                     <DrawerTrigger asChild>

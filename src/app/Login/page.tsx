@@ -9,12 +9,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from 'next/navigation';
+import Loading from "@/app/components/Loading";
 
 export default function Login() {
 
+  const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginresponse , setLoginresponse] = useState("");
+  const [isLoading, setisLoading] = useState(false);
   
 
   const submit =async()=>
@@ -22,10 +26,10 @@ export default function Login() {
     try 
     {
 
-
+      setisLoading(true);
       const response = await axios.post('/api/login', { email, password });
       setLoginresponse(response.data);
-
+      setisLoading(true);
       
       if(response.data.userdata){
       // console.log(response.data.userdata);
@@ -34,7 +38,11 @@ export default function Login() {
       Cookies.set('email', response.data.userdata.email, { expires: 1, path: '/' });
       Cookies.set('phone', response.data.userdata.phone, { expires: 1, path: '/' });
 
-      window.location.href = "/Dashboard";
+
+        if (response.data.userdata.username == "admin") {
+          router.push('/Admin', { scroll: false })
+        }
+        else { router.push('/Dashboard', { scroll: false }); }
       
       //Save cookies here Bitch
       }
@@ -61,6 +69,11 @@ export default function Login() {
 
   return (
   <>
+  {isLoading ? (
+                <Loading />
+            ) : (
+                <div></div>
+            )}
   <Toaster position="top-center" />
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] px-5">
       <div className="flex items-center justify-center py-12">

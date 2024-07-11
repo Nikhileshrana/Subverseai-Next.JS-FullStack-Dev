@@ -10,6 +10,7 @@ import { Toaster } from "@/components/ui/sonner"
 import Loading from "@/app/components/Loading"
 import { set } from 'mongoose';
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 interface TranscriptItem {
   transcript: string;
@@ -64,6 +65,18 @@ export default function Component() {
   const [apisummary, setApisummary] = useState<string[]>([]);
   const [apitranscript, setApitranscript] = useState<TranscriptItem[]>([]);
 
+
+
+  if(Cookies.get('username')=="admin")
+    {
+      router.push("/Admin");
+    }
+    else
+    {
+      router.push("/Login");
+    }
+
+
   const runcsvtojsonapi = async () => {
     setIsLoading(true);
     const response = await axios.post("/api/savecsvtodb");
@@ -84,6 +97,8 @@ export default function Component() {
       console.error('Error uploading file:', error);
     }
   };
+
+
 
 
 
