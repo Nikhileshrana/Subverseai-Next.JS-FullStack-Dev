@@ -105,10 +105,12 @@ export default function Dashboard() {
           
           
           
+          <div className="h-10 w-screen p-5 ">
+          <Button onClick={()=>{router.push("/Data");}}>Go to Global Data</Button>
+          </div>
           
           
-          
-          <section className="col-span-1 md:col-span-2 lg:col-span-3">
+          {/* <section className="col-span-1 md:col-span-2 lg:col-span-3">
             <h2 className="text-2xl font-bold mb-4">Products</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
@@ -119,7 +121,7 @@ export default function Dashboard() {
 
 
             </div>
-          </section>
+          </section> */}
           
         </main>
       </div>

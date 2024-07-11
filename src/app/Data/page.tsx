@@ -121,7 +121,7 @@ export default function Data() {
 
 
             <div className="p-2 flex justify-between px-5">
-                <Link href="/Dashboard_2">
+                <Link href="/Admin">
                     <Button variant="outline">Back</Button>
                 </Link>
 
