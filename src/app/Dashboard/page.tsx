@@ -105,9 +105,7 @@ export default function Dashboard() {
           
           
           
-          <div className="h-10 w-screen p-5 ">
-          <Button onClick={()=>{router.push("/Data");}}>Go to Global Data</Button>
-          </div>
+         
           
           
           {/* <section className="col-span-1 md:col-span-2 lg:col-span-3">
@@ -124,6 +122,11 @@ export default function Dashboard() {
           </section> */}
           
         </main>
+
+        
+        <div className="h-10 w-full p-5 ">
+          <Button className="w-full" onClick={()=>{router.push("/Data");}}>Go to Global Data</Button>
+          </div>
       </div>
     </>
   )

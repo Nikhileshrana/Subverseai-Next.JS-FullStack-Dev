@@ -21,6 +21,15 @@ export default function Login() {
   const [isLoading, setisLoading] = useState(false);
   
 
+  if(Cookies.get('email')=="" || Cookies.get('email')==undefined || Cookies.get('email')==null)
+    {
+      console.log("User needs to Login");
+    }
+    else
+    {
+      router.push('/Dashboard', { scroll: false });
+    }
+
   const submit =async()=>
   {
     try 
@@ -29,7 +38,7 @@ export default function Login() {
       setisLoading(true);
       const response = await axios.post('/api/login', { email, password });
       setLoginresponse(response.data);
-      setisLoading(true);
+      setisLoading(false);
       
       if(response.data.userdata){
       // console.log(response.data.userdata);
@@ -42,7 +51,7 @@ export default function Login() {
         if (response.data.userdata.username == "admin") {
           router.push('/Admin', { scroll: false })
         }
-        else { router.push('/Dashboard', { scroll: false }); }
+        else{ router.push('/Dashboard', { scroll: false }); }
       
       //Save cookies here Bitch
       }

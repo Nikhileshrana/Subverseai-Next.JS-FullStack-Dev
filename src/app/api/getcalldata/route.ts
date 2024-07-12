@@ -17,7 +17,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         });
 
 
-        console.log(modifiedData);
+        // console.log(modifiedData);
         
         return NextResponse.json(modifiedData);
     } catch (e) {

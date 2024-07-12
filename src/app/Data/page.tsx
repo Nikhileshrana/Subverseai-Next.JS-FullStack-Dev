@@ -12,7 +12,7 @@ import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
 
 
@@ -93,20 +93,18 @@ export default function Data() {
         const response = await axios.post("/api/getcalldata");
         setIsLoading(false);
         setuserdata(response.data);
-        console.log(response.data);
+        // console.log(response.data);
     };
 
 
     const fetchmyanalysis = async (Call_ID: string) => {
         setIsLoading(true);
         const response = await axios.post("/api/getcallanalysisdata", { Call_ID: Call_ID });
-
         setApisummary(response.data.jsonconvertedsummary.summary);
         setApitranscript(response.data.transcriptWithSpeakers);
         setApianalysis(response.data.jsonconvertedanalysis);
-
-        console.log(response.data);
         setIsLoading(false);
+        // console.log(response.data);
     };
 
 
@@ -149,17 +147,17 @@ export default function Data() {
                                 <Popover>
                                     <PopoverTrigger><Button className="w-[9vw]" variant="default">{customer.Agent_Name}</Button></PopoverTrigger>
                                     <PopoverContent className="flex-col justify-between">
-                                        <div className="flex bg-blue-500 justify-between my-2 px-2 py-1  rounded-xl">
+                                        <div className="flex bg-zinc-700 justify-between my-2 px-2 py-1  rounded-xl">
                                             <div className="self-center font-semibold">Agent Empathy</div>
-                                            <div className="bg-blue-600 p-2 rounded-2xl">{customer.Analysis.Agent_Empathy.score}/10</div>
+                                            <div className={getTextColor(customer.Analysis.Agent_Empathy.score)} >{customer.Analysis.Agent_Empathy.score}/10</div>
                                         </div>
-                                        <div className="flex bg-blue-500 justify-between my-2 px-2 py-1  rounded-xl">
+                                        <div className="flex bg-zinc-700 justify-between my-2 px-2 py-1  rounded-xl">
                                             <div className="self-center font-semibold">Responsiveness</div>
-                                            <div className="bg-blue-600 p-2 rounded-2xl">{customer.Analysis.Agent_Promptness_and_Responsiveness.score}/10</div>
+                                            <div className={getTextColor(customer.Analysis.Agent_Promptness_and_Responsiveness.score)}>{customer.Analysis.Agent_Promptness_and_Responsiveness.score}/10</div>
                                         </div>
-                                        <div className="flex bg-blue-500 justify-between my-2 px-2 py-1  rounded-xl">
+                                        <div className="flex bg-zinc-700 justify-between my-2 px-2 py-1  rounded-xl">
                                             <div className="self-center font-semibold">Agent Knowledge</div>
-                                            <div className="bg-blue-600 p-2 rounded-2xl">{customer.Analysis.Agent_Knowledge.score}/10</div>
+                                            <div className={getTextColor(customer.Analysis.Agent_Knowledge.score)}>{customer.Analysis.Agent_Knowledge.score}/10</div>
                                         </div>
                                     </PopoverContent>
                                 </Popover>
@@ -250,52 +248,52 @@ export default function Data() {
                                                                     <div className="flex justify-between">
                                                                     <span className="font-bold text-xl text-white">Customer Sentiment Analysis</span><span className={getTextColor(apianalysis.Customer_Sentiment.score)}>{apianalysis.Customer_Sentiment.score}/10</span>
                                                                     </div>
-                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-slate-300">{apianalysis.Customer_Sentiment.detail}</div>
+                                                                    <div className="border-2 border-white font-semibold w-fit px-5 py-1 rounded-xl text-[#27272A] bg-slate-300">{apianalysis.Customer_Sentiment.detail}</div>
                                                                 </div>
 
                                                                 <div className="border p-3 rounded-xl bg-zinc-700">
                                                                     <div className="flex justify-between">
                                                                     <span className="font-bold text-xl text-white">Customer Intent Analysis</span> <span className={getTextColor(apianalysis.Customer_Intent.score)}>{apianalysis.Customer_Intent.score}/10</span>
                                                                     </div>
-                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-slate-300">{apianalysis.Customer_Intent.detail}</div>
+                                                                    <div className="border-2 border-white font-semibold w-fit px-5 py-1 rounded-xl text-[#27272A] bg-slate-300">{apianalysis.Customer_Intent.detail}</div>
                                                                 </div>
 
                                                                 <div className="border p-3 rounded-xl bg-zinc-700">
                                                                     <div className="flex justify-between">
                                                                     <span className="font-bold text-xl text-white">Agent Empathy</span> <span className={getTextColor(apianalysis.Agent_Empathy.score)}>{apianalysis.Agent_Empathy.score}/10</span>
                                                                     </div>
-                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-slate-300">{apianalysis.Agent_Empathy.detail}</div>
+                                                                    <div className="border-2 border-white font-semibold w-fit px-5 py-1 rounded-xl text-[#27272A] bg-slate-300">{apianalysis.Agent_Empathy.detail}</div>
                                                                 </div>
 
                                                                 <div className="border p-3 rounded-xl bg-zinc-700">
                                                                     <div className="flex justify-between">
                                                                     <span className="font-bold text-xl text-white">Agent Promptness and Responsiveness</span> <span className={getTextColor(apianalysis.Agent_Promptness_and_Responsiveness.score)}>{apianalysis.Agent_Promptness_and_Responsiveness.score}/10</span>
                                                                     </div>
-                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-slate-300">{apianalysis.Agent_Promptness_and_Responsiveness.detail}</div>
+                                                                    <div className="border-2 border-white font-semibold w-fit px-5 py-1 rounded-xl text-[#27272A] bg-slate-300">{apianalysis.Agent_Promptness_and_Responsiveness.detail}</div>
                                                                 </div>
 
                                                                 <div className="border p-3 rounded-xl bg-zinc-700">
                                                                     <div className="flex justify-between">
                                                                     <span className="font-bold text-xl text-white">Agent Knowledge</span><span className={getTextColor(apianalysis.Agent_Knowledge.score)}>{apianalysis.Agent_Knowledge.score}/10</span>
                                                                     </div>
-                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-slate-300">{apianalysis.Agent_Knowledge.detail}</div>
+                                                                    <div className="border-2 border-white font-semibold w-fit px-5 py-1 rounded-xl text-[#27272A] bg-slate-300">{apianalysis.Agent_Knowledge.detail}</div>
                                                                 </div>
 
                                                                 <div className="border p-3 rounded-xl bg-zinc-700">
                                                                     <div className="flex justify-between">
                                                                     <span className="font-bold text-xl text-white">Call Flow Optimization</span> <span className={getTextColor(apianalysis.Call_Flow_Optimization.score)}>{apianalysis.Call_Flow_Optimization.score}/10</span>
                                                                     </div>
-                                                                    <div className="border-2 font-semibold w-fit px-5 py-1 rounded-xl bg-slate-300">{apianalysis.Call_Flow_Optimization.detail}</div>
+                                                                    <div className="border-2 border-white font-semibold w-fit px-5 py-1 rounded-xl text-[#27272A] bg-slate-300">{apianalysis.Call_Flow_Optimization.detail}</div>
                                                                 </div>
 
                                                                 <div className="border p-3 rounded-xl bg-zinc-700 flex justify-between">
                                                                     <div className="font-bold text-xl text-white">Call Completion Status </div>
-                                                                    <div className="font-bold p-2 bg-slate-300 rounded-2xl"> {apianalysis.Call_Completion_Status}</div>
+                                                                    <div className="font-bold p-2 bg-slate-300 text-[#27272A] rounded-2xl"> {apianalysis.Call_Completion_Status}</div>
                                                                 </div>
      
                                                                 <div className="border p-3 rounded-xl bg-zinc-700 flex justify-between">
                                                                     <div className="font-bold text-xl text-white">Issue Resolved Status </div>
-                                                                    <div className="font-bold p-2 bg-slate-300 rounded-2xl">{apianalysis.Issue_Resolved_Status}</div>
+                                                                    <div className="font-bold p-2 bg-slate-300 text-[#27272A] rounded-2xl">{apianalysis.Issue_Resolved_Status}</div>
                                                                 </div>
                                                             </div>
                                                         )}

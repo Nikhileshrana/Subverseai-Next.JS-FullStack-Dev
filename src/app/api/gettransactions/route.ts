@@ -9,7 +9,6 @@ export async function POST(req: NextRequest) {
 
         console.log("Fetching transactions...");
         const body = await req.json();
-        console.log("Request body:", body);
         const transactions = await Paymenthistory.find({ email: body.email });
         return NextResponse.json({ transactions });
 
