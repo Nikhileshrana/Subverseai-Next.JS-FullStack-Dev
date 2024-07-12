@@ -330,10 +330,10 @@ export default function Data() {
 
 const getTextColor = (score:string) => {
     if (Number(score) > 7) {
-        return "text-green-600 p-2 bg-white font-semibold rounded-2xl";
+        return "text-white p-2 bg-green-600 font-semibold rounded-2xl";
     } else if (Number(score) >= 4 && Number(score) <= 7) {
-        return "text-yellow-600 p-2 bg-white font-semibold rounded-2xl";
+        return "text-white p-2 bg-yellow-500 font-semibold rounded-2xl";
     } else {
-        return "text-red-600";
+        return "text-white p-2 bg-red-500 font-semibold rounded-2xl";
     }
 };
