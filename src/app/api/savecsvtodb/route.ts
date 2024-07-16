@@ -1,3 +1,5 @@
+export const maxDuration = 60;
+
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/app/lib/dbConnect';
 import Usercall from '@/app/models/Usercall';
@@ -90,8 +92,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     for (let i = 1; i < response.data.data.length; i++) {
       const callID = response.data.data[i].Call_ID;
-      
-      // Check if the record already exists in the database
       const existingRecord = await Usercall.findOne({ Call_ID: callID });
 
       if (existingRecord) {
