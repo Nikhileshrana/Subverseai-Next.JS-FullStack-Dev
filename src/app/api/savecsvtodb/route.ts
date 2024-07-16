@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import dbConnect from '../../lib/dbConnect';
-import Usercall from '../../models/Usercall';
+import dbConnect from "@/app/lib/dbConnect";
+import Usercall from '@/app/models/Usercall';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
@@ -91,77 +91,86 @@ function convertsummarytojson(summary: string): { summary: string[] } {
   return conversation;
 }
 
+// Function to process a batch of calls
+const processBatch = async (calls: string | any[], batchStart: number, batchSize: number) => {
+  await dbConnect();
+  for (let i = batchStart; i < batchStart + batchSize && i < calls.length; i++) {
+    const callID = calls[i].Call_ID;
+
+    // Check if the record already exists in the database
+    const existingRecord = await Usercall.findOne({ Call_ID: callID });
+
+    if (existingRecord) {
+      console.log(`Record already exists for Call_ID: ${callID}`);
+      continue; // Skip this entry if it already exists
+    }
+
+    const usecase = calls[i].Usecase;
+    const audioUrl = calls[i].Call_Recording_URL;
+    const systemPromptFile = `${usecase}.txt`;
+
+    try {
+      const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(
+        { url: audioUrl },
+        {
+          model: "nova-2",
+          utterances: true,
+          language: "en-IN",
+          detect_language: true,
+          diarize: true,
+          punctuate: true,
+          smart_format: true,
+          numerals: true,
+          paragraphs: true,
+        }
+      );
+
+      if (error) {
+        console.error('Error during transcription: URL / Usecase Incorrect');
+        continue;
+      }
+
+      const transcriptWithSpeakers = result.results.utterances.map((utterance: any) => ({
+        speaker: utterance.speaker,
+        start: utterance.start,
+        transcript: utterance.transcript
+      }));
+
+      const [callSummary, callAnalysis] = await getCallAnalysis(systemPromptFile, transcriptWithSpeakers);
+
+      const jsonconvertedsummary = convertsummarytojson(callSummary);
+      const jsonconvertedanalysis = JSON.parse(callAnalysis);
+
+      try {
+        await Usercall.create({
+          Call_ID: callID,
+          Customer_ID: calls[i].Customer_ID,
+          Agent_Name: calls[i].Agent_Name,
+          Call_Recording_URL: calls[i].Call_Recording_URL,
+          Usecase: calls[i].Usecase,
+          Transcript: JSON.stringify(transcriptWithSpeakers),
+          Summary: JSON.stringify(jsonconvertedsummary),
+          Analysis: JSON.stringify(jsonconvertedanalysis),
+        });
+
+        console.log("Data inserted successfully for row:", i);
+      } catch (dbError) {
+        console.error('Database error for row:', i, dbError);
+      }
+    } catch (transcriptionError) {
+      console.error('Error during transcription:', i, transcriptionError);
+    }
+  }
+};
+
 // Main handler for the POST request
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=NTwjP_ztQ3jKh3TkH5Davk-SdxMdqfdr7CBzEB-VfXkaABzG1dsGTad0qhdqZ8-Sp0dYjKZh-SAHw5GO6vRwi_M9n7Y74gXOm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnK6CqSIS2RFH3BTLd_Ept4sXdR9_oLa-35ATC6ByTVo3zcmqUnrgU8kY7OuuBcRss_FxaIVCJHafwghPfdcWuOroXoRe8FkOi9z9Jw9Md8uu&lib=MMBgbiU6hO1hq2gQ9dDx3m4cSD5YnuDq6");
-    await dbConnect();
 
-    for (let i = 1; i < response.data.data.length; i++) {
-      const callID = response.data.data[i].Call_ID;
-
-      // Check if the record already exists in the database
-      const existingRecord = await Usercall.findOne({ Call_ID: callID });
-
-      if (existingRecord) {
-        console.log(`Record already exists for Call_ID: ${callID}`);
-        continue; // Skip this entry if it already exists
-      }
-
-      const usecase = response.data.data[i].Usecase;
-      const audioUrl = response.data.data[i].Call_Recording_URL;
-      const systemPromptFile = `${usecase}.txt`;
-
-      try {
-        const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(
-          { url: audioUrl },
-          {
-            model: "nova-2",
-            utterances: true,
-            language: "en-IN",
-            detect_language: true,
-            diarize: true,
-            punctuate: true,
-            smart_format: true,
-            numerals: true,
-            paragraphs: true,
-          }
-        );
-
-        if (error) {
-          console.error('Error during transcription: URL / Usecase Incorrect');
-          continue;
-        }
-
-        const transcriptWithSpeakers = result.results.utterances.map((utterance: any) => ({
-          speaker: utterance.speaker,
-          start: utterance.start,
-          transcript: utterance.transcript
-        }));
-
-        const [callSummary, callAnalysis] = await getCallAnalysis(systemPromptFile, transcriptWithSpeakers);
-        const jsonconvertedsummary = convertsummarytojson(callSummary);
-        const jsonconvertedanalysis = JSON.parse(callAnalysis);
-
-        try {
-          await Usercall.create({
-            Call_ID: callID,
-            Customer_ID: response.data.data[i].Customer_ID,
-            Agent_Name: response.data.data[i].Agent_Name,
-            Call_Recording_URL: response.data.data[i].Call_Recording_URL,
-            Usecase: response.data.data[i].Usecase,
-            Transcript: JSON.stringify(transcriptWithSpeakers),
-            Summary: JSON.stringify(jsonconvertedsummary),
-            Analysis: JSON.stringify(jsonconvertedanalysis),
-          });
-
-          console.log("Data inserted successfully for row:", i);
-        } catch (dbError) {
-          console.error('Database error for row:', i);
-        }
-      } catch (transcriptionError) {
-        console.error('Error during transcription:', i);
-      }
+    const batchSize = 10; // Define the size of each batch
+    for (let i = 0; i < response.data.data.length; i += batchSize) {
+      await processBatch(response.data.data, i, batchSize);
     }
 
     return NextResponse.json({ message: "Data Inserted Successfully" });
