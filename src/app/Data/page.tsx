@@ -1,3 +1,4 @@
+//this is data page
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -85,6 +86,7 @@ export default function Data() {
             audioRef.current.play();
         }
     };
+
 
 
 
