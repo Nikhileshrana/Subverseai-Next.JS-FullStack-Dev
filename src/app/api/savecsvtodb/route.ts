@@ -6,6 +6,9 @@ import fs from 'fs';
 import path from 'path';
 const { createClient } = require("@deepgram/sdk");
 import Groq from "groq-sdk";
+import { createServer } from 'http';
+import { parse } from 'url';
+import { Worker } from 'worker_threads';
 
 // Initialize clients with environment variables
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
@@ -163,19 +166,35 @@ const processBatch = async (calls: string | any[], batchStart: number, batchSize
   }
 };
 
+// Background worker to handle batch processing
+const worker = new Worker(path.join(__dirname, 'worker.js'));
+
 // Main handler for the POST request
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=NTwjP_ztQ3jKh3TkH5Davk-SdxMdqfdr7CBzEB-VfXkaABzG1dsGTad0qhdqZ8-Sp0dYjKZh-SAHw5GO6vRwi_M9n7Y74gXOm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnK6CqSIS2RFH3BTLd_Ept4sXdR9_oLa-35ATC6ByTVo3zcmqUnrgU8kY7OuuBcRss_FxaIVCJHafwghPfdcWuOroXoRe8FkOi9z9Jw9Md8uu&lib=MMBgbiU6hO1hq2gQ9dDx3m4cSD5YnuDq6");
 
     const batchSize = 10; // Define the size of each batch
-    for (let i = 0; i < response.data.data.length; i += batchSize) {
-      await processBatch(response.data.data, i, batchSize);
-    }
 
-    return NextResponse.json({ message: "Data Inserted Successfully" });
+    // Pass the calls and batch size to the worker
+    worker.postMessage({ calls: response.data.data, batchSize });
+
+    // Return an immediate response
+    return NextResponse.json({ message: "Data processing started" });
   } catch (axiosError) {
     console.error('Axios error:', axiosError);
     return NextResponse.json({ error: 'Failed to fetch data' });
   }
 }
+
+// Worker script (worker.js)
+const { parentPort } = require('worker_threads');
+
+parentPort.on('message', async ({ calls }: { calls: any[]; batchSize: number }) => {
+  const batchSize = 10; // Define the size of each batch
+  for (let i = 0; i < calls.length; i += batchSize) {
+    await processBatch(calls, i, batchSize);
+  }
+
+  parentPort.postMessage({ message: "Data processing completed" });
+});
