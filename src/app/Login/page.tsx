@@ -48,8 +48,8 @@ export default function Login() {
       Cookies.set('phone', response.data.userdata.phone, { expires: 1, path: '/' });
 
 
-        if (response.data.userdata.username == "admin") {
-          router.push('/Admin', { scroll: false })
+        if (response.data.userdata.email == "info@subverseai.com") {
+          router.push('/Admin', { scroll: false });
         }
         else{ router.push('/Dashboard', { scroll: false }); }
       

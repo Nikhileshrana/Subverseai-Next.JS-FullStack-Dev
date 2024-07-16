@@ -61,9 +61,6 @@ interface Userdata {
     Customer_ID: string;
     Usecase: string;
     Call_Recording_URL: string;
-
-
-
     Analysis: AnalysisItem;
 
 }

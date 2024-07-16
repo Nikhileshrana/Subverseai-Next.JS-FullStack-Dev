@@ -16,7 +16,13 @@ export default function Component() {
     if(email === "") {
       setloginstat("/Login");
       setlogintxt("Login");
-    } else {
+    }
+    else if(email === "info@subverseai.com")
+      {
+        setlogintxt("Dashboard");
+        setloginstat("/Admin");
+      } 
+    else {
       setlogintxt("Dashboard");
       setloginstat("/Dashboard");
     }
