@@ -1,8 +1,5 @@
 export const maxDuration = 60;
 
-
-
-
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/app/lib/dbConnect';
 import Usercall from '@/app/models/Usercall';
@@ -11,6 +8,7 @@ import fs from 'fs';
 import path from 'path';
 const { createClient } = require("@deepgram/sdk");
 import Groq from "groq-sdk";
+
 
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
@@ -22,54 +20,46 @@ interface ChatCompletionMessageParam {
   content: string;
 }
 
-// Function to fetch system prompts from file
 const getSystemPrompt = (filename: string): ChatCompletionMessageParam[] => {
+  const systemPrompt: ChatCompletionMessageParam[] = [];
   const filePath = path.join(systemPromptFolder, filename);
-  let systemPrompt: ChatCompletionMessageParam[] = [];
 
-  try {
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    systemPrompt = fileContent
-      .trim()
-      .split('\n')
-      .map(line => {
-        const parts = line.trim().split('=');
-        return parts.length === 2 ? { role: 'system', content: parts[1].trim() } : null;
-      })
-      .filter(Boolean) as ChatCompletionMessageParam[];
-  } catch (error) {
-    console.error(`Failed to read system prompt file ${filename}:`, error);
-  }
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  fileContent.split('\n').forEach(line => {
+    const parts = line.trim().split('=');
+    if (parts.length === 2) {
+      const [key, value] = parts;
+      systemPrompt.push({ role: "system", content: value });
+    }
+  });
 
   return systemPrompt;
 };
 
-// Function to perform LLM response generation
 const llmResponse = async (query: string, conversationHistory: ChatCompletionMessageParam[]) => {
-  try {
-    const response = await groq.chat.completions.create({
-      messages: conversationHistory.concat({ role: 'user', content: query }),
-      model: 'llama3-8b-8192',
-      temperature: 0.5,
-      max_tokens: 1024,
-      top_p: 1,
-      stream: false,
-    });
+  const response = await groq.chat.completions.create({
+    messages: conversationHistory.concat({ role: "user", content: query }),
+    model: "llama3-8b-8192",
+    temperature: 0.5,
+    max_tokens: 1024,
+    top_p: 1,
+    stream: false,
+  });
 
+  try {
     return response.choices[0]?.message?.content || '{}';
   } catch (error) {
-    console.error('Failed to fetch LLM response:', error);
-    return '{}';
+    console.error('Failed to parse LLM response as JSON:', error);
+    return response.choices[0]?.message?.content || '';
   }
 };
 
-// Function to process call analysis
 const getCallAnalysis = async (systemPromptFile: string, transcriptWithSpeakers: any) => {
   const systemPrompt = getSystemPrompt(systemPromptFile);
   const conversationHistory: ChatCompletionMessageParam[] = [...systemPrompt];
 
   transcriptWithSpeakers.forEach((utterance: any) => {
-    const role: 'user' | 'assistant' = utterance.speaker === 0 ? 'user' : 'assistant';
+    const role: 'user' | 'assistant' = utterance.speaker === 0 ? "user" : "assistant";
     conversationHistory.push({ role, content: utterance.transcript });
   });
 
@@ -82,44 +72,44 @@ const getCallAnalysis = async (systemPromptFile: string, transcriptWithSpeakers:
   return [callSummary, callAnalysis];
 };
 
-// Function to convert summary string to JSON format
-const convertsummarytojson = (summary: string): { summary: string[] } => {
-  const points = summary.trim().split('\n* ').filter(Boolean);
-  return { summary: points.map(point => point.trim()) };
-};
+function convertsummarytojson(summary: string): { summary: string[] } {
+  const points = summary.trim().split("\n* ");
+  points.shift();
+
+  const conversation: { summary: string[] } = { summary: [] };
+
+  points.forEach(point => {
+    conversation.summary.push(point.trim());
+  });
+
+  return conversation;
+}
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
-    // Fetch data from external API
     const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=NTwjP_ztQ3jKh3TkH5Davk-SdxMdqfdr7CBzEB-VfXkaABzG1dsGTad0qhdqZ8-Sp0dYjKZh-SAHw5GO6vRwi_M9n7Y74gXOm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnK6CqSIS2RFH3BTLd_Ept4sXdR9_oLa-35ATC6ByTVo3zcmqUnrgU8kY7OuuBcRss_FxaIVCJHafwghPfdcWuOroXoRe8FkOi9z9Jw9Md8uu&lib=MMBgbiU6hO1hq2gQ9dDx3m4cSD5YnuDq6");
-
-    // Connect to MongoDB
     await dbConnect();
 
-    // Process each call record
     for (let i = 1; i < response.data.data.length; i++) {
       const callID = response.data.data[i].Call_ID;
-
-      // Check if record already exists
       const existingRecord = await Usercall.findOne({ Call_ID: callID });
+
       if (existingRecord) {
         console.log(`Record already exists for Call_ID: ${callID}`);
         continue; // Skip this entry if it already exists
       }
 
-      // Fetch call details
-      const usecase = response.data.data[i].Usecase;
-      const audioUrl = response.data.data[i].Call_Recording_URL;
-      const systemPromptFile = `${usecase}.txt`;
+      let usecase = response.data.data[i].Usecase;
+      let audioUrl = response.data.data[i].Call_Recording_URL;
+      let systemPromptFile = `${usecase}.txt`;
 
       try {
-        // Transcribe audio using Deepgram
         const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(
           { url: audioUrl },
           {
-            model: 'nova-2',
+            model: "nova-2",
             utterances: true,
-            language: 'en-IN',
+            language: "en-IN",
             detect_language: true,
             diarize: true,
             punctuate: true,
@@ -130,39 +120,39 @@ export async function POST(req: NextRequest, res: NextResponse) {
         );
 
         if (error) {
-          console.error('Error during transcription:', error);
+          console.error('Error during transcription: URL / Usecase Incorrect');
           continue;
         }
 
-        // Process transcript with speakers
         const transcriptWithSpeakers = result.results.utterances.map((utterance: any) => ({
           speaker: utterance.speaker,
           start: utterance.start,
-          transcript: utterance.transcript,
+          transcript: utterance.transcript
         }));
 
-        // Generate call summary and analysis
         const [callSummary, callAnalysis] = await getCallAnalysis(systemPromptFile, transcriptWithSpeakers);
 
-        // Convert summary to JSON format
         const jsonconvertedsummary = convertsummarytojson(callSummary);
         const jsonconvertedanalysis = JSON.parse(callAnalysis);
 
-        // Save data to MongoDB
-        await Usercall.create({
-          Call_ID: callID,
-          Customer_ID: response.data.data[i].Customer_ID,
-          Agent_Name: response.data.data[i].Agent_Name,
-          Call_Recording_URL: response.data.data[i].Call_Recording_URL,
-          Usecase: response.data.data[i].Usecase,
-          Transcript: JSON.stringify(transcriptWithSpeakers),
-          Summary: JSON.stringify(jsonconvertedsummary),
-          Analysis: JSON.stringify(jsonconvertedanalysis),
-        });
+        try {
+          await Usercall.create({
+            Call_ID: callID,
+            Customer_ID: response.data.data[i].Customer_ID,
+            Agent_Name: response.data.data[i].Agent_Name,
+            Call_Recording_URL: response.data.data[i].Call_Recording_URL,
+            Usecase: response.data.data[i].Usecase,
+            Transcript: JSON.stringify(transcriptWithSpeakers),
+            Summary: JSON.stringify(jsonconvertedsummary),
+            Analysis: JSON.stringify(jsonconvertedanalysis),
+          });
 
-        console.log("Data inserted successfully for row:", i);
+          console.log("Data inserted successfully for row:", i);
+        } catch (e) {
+          console.error('Data already present in database for row:', i);
+        }
       } catch (e) {
-        console.error('Error processing call record:', e);
+        console.error('Error during transcription:', i);
       }
     }
 
