@@ -9,11 +9,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
+import Loading from "@/app/components/Loading";
 
 export default function SignupForm() {
   const router = useRouter()
 
-
+  const [isLoading, setisLoading] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -22,6 +23,7 @@ export default function SignupForm() {
 
   const signup = async () => {
     try {
+      setisLoading(true);
       const response = await axios.post('/api/signup', { name, email, username, password , phone });
       console.log(response.data);
 
@@ -29,6 +31,7 @@ export default function SignupForm() {
         {
           router.push('/Login')
         }
+      setisLoading(false);
 
       toast(`Hi , ${name}`, {
         description: response.data.data,
@@ -52,6 +55,14 @@ export default function SignupForm() {
 
   return (
     <>
+
+{isLoading ? (
+                <Loading />
+            ) : (
+                <div></div>
+            )}
+
+            
       <Toaster position="top-center" />
       <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] px-5">
         <div className="flex items-center justify-center py-12">

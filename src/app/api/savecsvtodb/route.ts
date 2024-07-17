@@ -92,7 +92,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     for (let i = 1; i < response.data.data.length; i++) {
       const callID = response.data.data[i].Call_ID;
-      const existingRecord = await Usercall.findOne({ Call_ID: callID });
+      const existingRecord = await Usercall.findOne({ Call_ID: callID });       //Time Consumed
 
       if (existingRecord) {
         console.log(`Record already exists for Call_ID: ${callID}`);
@@ -104,7 +104,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       let systemPromptFile = `${usecase}.txt`;
 
       try {
-        const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(
+        const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(   //Time Consumed
           { url: audioUrl },
           {
             model: "nova-2",
@@ -130,10 +130,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
           transcript: utterance.transcript
         }));
 
-        const [callSummary, callAnalysis] = await getCallAnalysis(systemPromptFile, transcriptWithSpeakers);
+        console.log("Transcription done for row:", i);
 
+        const [callSummary, callAnalysis] = await getCallAnalysis(systemPromptFile, transcriptWithSpeakers);  //Time Consumed
         const jsonconvertedsummary = convertsummarytojson(callSummary);
         const jsonconvertedanalysis = JSON.parse(callAnalysis);
+
+
+        console.log("Analysis Done for row:", i);
 
         try {
           await Usercall.create({
@@ -147,7 +151,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
             Analysis: JSON.stringify(jsonconvertedanalysis),
           });
 
-          console.log("Data inserted successfully for row:", i);
+          console.log("Data inserted successfully for row:", i,"in Database");
+          
         } catch (e) {
           console.error('Data already present in database for row:', i);
         }

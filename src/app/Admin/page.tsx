@@ -67,6 +67,7 @@ export default function Component() {
 
 
 
+
   if(Cookies.get('username')=="admin")
     {
       router.push("/Admin");
@@ -99,7 +100,13 @@ export default function Component() {
   };
 
 
-
+  const deleteCookies = () => {
+    Cookies.remove('name');
+    Cookies.remove('username');
+    Cookies.remove('email');
+    Cookies.remove('phone');
+    router.push('/Login');
+  };
 
 
 
@@ -134,8 +141,15 @@ export default function Component() {
                   <path d="M12 3v6" />
                 </svg>
                 <span className="">SubverseAI Analytics</span>
+               
               </Link>
+              
+
+             
+
+
             </div>
+            
             <div className="flex-1 overflow-auto py-2">
               <nav className="grid items-start px-4 text-sm font-medium">
                 <Button
@@ -210,7 +224,35 @@ export default function Component() {
             </div>
           </div>
         </div>
+
+
+
         <div className="flex flex-col">
+        <Link className='flex justify-end mx-5' onClick={deleteCookies} href="Login">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-gray-400 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+          >
+            <svg
+              className="h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" x2="9" y1="12" y2="12" />
+            </svg>
+            <span className="sr-only">Logout</span>
+          </Button>
+          </Link>
           <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6 lg:p-8 xl:p-10">
             {activeTab === "overview" && (
               <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 text-black">
@@ -237,6 +279,7 @@ export default function Component() {
 
             {activeTab === "upload" && (
               <div className="grid gap-6">
+
                 <Card className="flex flex-col">
                   <CardHeader className="flex-row justify-between">
                     
