@@ -22,7 +22,7 @@ Users can upload their Google Sheets data containing `CALL_ID`, `CUSTOMER_ID`, `
 - ShadCN
 
 ## Installation
-1. Clone the repository: `git clone <https://github.com/Nikhileshrana/Subverseai-Next.JS-FullStack-Dev.git>`
+1. Clone the repository: ## git clone https://github.com/Nikhileshrana/Subverseai-Next.JS-FullStack-Dev.git
 2. Install dependencies: `npm install`
 3. Run Code as Developer:  `npm run dev`
 4. Run Code as Production:  `npm run build , npm run start`
