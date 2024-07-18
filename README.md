@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Website Documentation
 
-## Getting Started
+## 1. Introduction
+### Purpose
+This website converts data from Google Sheets into audio transcriptions and processes them to generate analysis and summaries.
 
-First, run the development server:
+### Overview
+Users can upload their Google Sheets data containing `CALL_ID`, `CUSTOMER_ID`, `AGENT_NAME`, and `CALL_REC_URL`. The website processes this data, converting audio recordings into transcriptions, analyzing the content, and generating summaries.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 2. Getting Started
+### Prerequisites
+- Google account
+- Deepgram API key
+- Groq API key
+- MongoDB URL
+- NEXT_PUBLIC_RAZORPAY_KEY_ID
+- RAZORPAY_KEY_SECRET
+- COMPANY_NAME
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### UI Library
+- Acertinity UI
+- ShadCN
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
+1. Clone the repository: `git clone <repository-url>`
+2. Install dependencies: `npm install`
+3. Run Code as Developer:  `npm run dev`
+4. Run Code as Production:  `npm run build , npm run start`
+5. Set up environment variables:
+   ```plaintext
+   MONGODB_URI=<your-google-sheets-api-key>
+   DEEPGRAM_API_KEY=<your-deepgram-api-key>
+   GROQ_API_KEY=<your-groq-api-key>
+   EMAIL_USER=<Email of user for Request Demo/Contact>
+   EMAIL_PASS=<Email Password Setup for Request Demo/Contact>
+   ```
+### API Documentation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## /Signup
+- Endpoint URL : `/api/signup`
+- Method : `POST`
+- Parameters : `name, email, username, password , phone`
+- Response : `response.data`
 
-## Learn More
+## /Login
+- Endpoint URL : `/api/login`
+- Method : `POST`
+- Parameters : `email, password`
+- Response : `response.data`
 
-To learn more about Next.js, take a look at the following resources:
+## /Admin
+- Endpoint URL : `/api/savecsvtodb`
+- Method : `POST`
+- Parameters : `{}`
+- Response : `response.data.message`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## /Dashboard
+- Endpoint URL : `/api/getcredits`
+- Method : `POST`
+- Parameters : `email`
+- Response : `response.data.credits`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
