@@ -36,31 +36,31 @@ Users can upload their Google Sheets data containing `CALL_ID`, `CUSTOMER_ID`, `
    ```
 ### API Documentation
 
-## /Signup
+### /Signup
 - Endpoint URL : `/api/signup`
 - Method : `POST`
 - Parameters : `name, email, username, password , phone`
 - Response : `response.data`
 
-## /Login
+### /Login
 - Endpoint URL : `/api/login`
 - Method : `POST`
 - Parameters : `email, password`
 - Response : `response.data`
 
-## /Admin
+### /Admin
 - Endpoint URL : `/api/savecsvtodb`
 - Method : `POST`
 - Parameters : `{}`
 - Response : `response.data.message`
 
-## /Dashboard
+### /Dashboard
 - Endpoint URL : `/api/getcredits`
 - Method : `POST`
 - Parameters : `email`
 - Response : `response.data.credits`
 
-## /Data
+### /Data
 
 # For Fetching User Info Data Only
 - Endpoint URL : `/api/getcalldata`
