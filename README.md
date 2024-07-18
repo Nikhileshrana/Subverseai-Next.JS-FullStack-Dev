@@ -49,14 +49,14 @@ Total 3 Database Schema is Defined.
 2. usercalls
 3. userinformation
 
-## paymenthistories
+## 1. paymenthistories
 - date
 - email
 - amount
 - razorpay_payment_id
 - razorpay_order_id
 
-## usercalls
+## 2. usercalls
 - Call_ID
 - Customer_ID
 - Agent_Name
@@ -66,7 +66,7 @@ Total 3 Database Schema is Defined.
 - Summary
 - Analysis
 
-## userinformations
+## 3. userinformations
 - name
 - email
 - username
