@@ -60,4 +60,34 @@ Users can upload their Google Sheets data containing `CALL_ID`, `CUSTOMER_ID`, `
 - Parameters : `email`
 - Response : `response.data.credits`
 
+## /Data
+
+# For Fetching User Info Data Only
+- Endpoint URL : `/api/getcalldata`
+- Method : `POST`
+- Parameters : `{}`
+- Response : `response.data`
+
+# For Fetching Current User Transcription + Summary + Analysis Data from DB
+- Endpoint URL : `/api/getcallanalysisdata`
+- Method : `POST`
+- Parameters : `{Call_ID: Call_ID}`
+- Response -
+   1. Summary : `response.data.jsonconvertedsummary.summary`
+   2. Transcription : `response.data.transcriptWithSpeakers`
+   3. Analysis : `response.data.jsonconvertedanalysis`
+
+### User Creation and Info Storage
+- User's Info Stored in Browser Cookie using jscookie Module of NPM after Successful Login.
+- User's is then Pushed using `router.push` to the dashboard page depending upon the type of user. That is , if the users `email === info@subverseai.com` user is pushed to Admin panel which only Allows `email === info@subverseai.com` in React Routing.
+- If `email != info@subverseai.com` then user is pushed to normal Dashboard for Viewing THE Global Data.
+- We can change the Dashboard Routing based on the cookie.email and applying condition to every email and then routing it to its Dashboard. Its not Dynamic Because of the Intial Requirement of the Company.
+
+
+
+
+
+
+
+
 
