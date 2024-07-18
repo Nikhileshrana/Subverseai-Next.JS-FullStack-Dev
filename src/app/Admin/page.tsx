@@ -296,6 +296,7 @@ export default function Component() {
                     </div>
                     
                   </CardHeader>
+
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-center w-full h-32 border-2 border-dashed rounded-md border-muted-foreground/20 hover:border-primary transition-colors">
                       <input
